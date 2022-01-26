@@ -1,0 +1,220 @@
+$Blue: #3a89c2;
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+$primaryColor: #999;
+$gray: #bbbbbb;
+
+@mixin label {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+@mixin select {
+  display: block;
+  width: 300px;
+  height: 50px;
+  margin-top: 20px;
+  padding: 3px 12px;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #282828;
+  background-color: #f0eeee;
+  background-image: none;
+  border: 1px solid #b0afaf;
+  border-radius: 0;
+  font-weight: bold;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: border-color ease-in-out 0.15s,
+    -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.preview img {
+  max-width: 336px;
+  max-height: 500px;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.select_uploadImage::file-selector-button {
+  outline: none;
+  height: 60px;
+  margin-top: 30px;
+  text-align: center;
+  width: 200px;
+  border-radius: 10px;
+  background: #fff;
+  border: 2px solid $Blue;
+  color: $Blue;
+  letter-spacing: 1px;
+  font-size: 20px;
+  text-shadow: 0;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    color: white;
+    background: $Blue;
+  }
+}
+
+.contactInformationh1Div h1 {
+  border-bottom: 2px black solid;
+  width: 350px;
+}
+
+.found_wrapper {
+  display: flex;
+}
+
+.selection {
+  padding-top: 100px;
+  padding-bottom: auto;
+  width: 500px;
+}
+
+.selection h1 {
+  margin-left: 100px;
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
+.select {
+  position: relative;
+  margin-left: 100px;
+  margin-bottom: 60px;
+}
+
+.select_title {
+  @include select;
+}
+
+.select_description {
+  @include select;
+}
+
+.select_phone {
+  @include select;
+}
+
+.select_mail {
+  @include select;
+}
+
+.label_title {
+  @include label;
+}
+
+.label_category {
+  @include label;
+}
+
+.label_color {
+  @include label;
+}
+
+.label_location {
+  @include label;
+}
+
+.label_description {
+  @include label;
+}
+
+.label_uploadImage {
+  @include label;
+}
+
+.label_phone {
+  @include label;
+}
+
+.label_mail {
+  @include label;
+}
+
+.select_div {
+  margin-top: 20px;
+}
+
+.select_phone::-webkit-inner-spin-button {
+  /* remove the arrows on the right of the number input field */
+  display: none;
+}
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  width: 326px;
+  height: 60px;
+  -moz-padding-start: calc(10px - 3px);
+  padding-left: 10px;
+  color: #313131;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  margin-left: 0px;
+}
+
+option {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.text_container {
+  padding-top: 100px;
+  padding-left: 30px;
+  width: 500px;
+  display: inline-block;
+}
+
+.text_container h1 {
+  font-size: 40px;
+  font-weight: 500;
+  color: #4d4d4d;
+  position: fixed;
+}
+
+.container {
+  margin-left: 100px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.submit {
+  outline: none;
+  height: 60px;
+  text-align: center;
+  width: 200px;
+  border-radius: 10px;
+  background: #fff;
+  border: 2px solid $Blue;
+  color: $Blue;
+  letter-spacing: 2px;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 0;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+  &:hover {
+    color: white;
+    background: $Blue;
+  }
+  &:active {
+    letter-spacing: 2px;
+  }
+}
