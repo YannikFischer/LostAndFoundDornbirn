@@ -12,6 +12,11 @@ const Navbar = () => {
         rel="stylesheet"
       />
       <nav className="navbar">
+        <div className="navbar_toggle" id="mobile-menu">
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </div>
         <img src={Logo} alt="item_picture" className="img_responsive" />
         <div className="navbarButtons">
           <Link to={"/"} className="home">
@@ -25,6 +30,7 @@ const Navbar = () => {
           </Link>
         </div>
       </nav>
+      {/* <script src="script.js"></script> */}
     </div>
   );
 };

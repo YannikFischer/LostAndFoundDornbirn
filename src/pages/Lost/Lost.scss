@@ -202,3 +202,9 @@ $gray: #bbbbbb;
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 960px) {
+  .lost_wrapper {
+    display: block;
+  }
+}

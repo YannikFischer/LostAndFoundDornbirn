@@ -1,6 +1,5 @@
 p {
   font-size: 28px;
-  width: 300px;
 }
 
 #content {
@@ -16,60 +15,103 @@ p {
   margin-top: 3%;
 }
 
-#images {
+#blocks {
   display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-bottom: 75px;
+}
+
+#lost_block {
+  width: 25%;
+  margin-left: 5%;
+
+  min-height: 30%;
+  max-height: 30%;
+}
+
+#service_block {
+  width: 25%;
+  margin-left: 7.5%;
+  margin-right: 7.5%;
+
+  min-height: 30%;
+  max-height: 30%;
+}
+
+#found_block {
+  width: 25%;
+  margin-right: 5%;
+
+  min-height: 30%;
+  max-height: 30%;
 }
 
 #text {
-  display: flex;
-}
-
-#service_div {
   margin-left: auto;
   margin-right: auto;
-  width: 300px;
+  width: 80%;
+  height: 75%;
+  text-align: center;
+  align-items: center;
 }
 
-#lost_div {
-  margin-left: 8%;
-  width: 300px;
+#text h1 {
+  margin-left: 0px;
+  text-align: center;
 }
 
-#found_div {
-  margin-right: 8%;
-  width: 300px;
+#image {
+  height: 25%; //hängt mit text height zusammen 25% + 75% = 100%
+}
+
+#logo_div {
+  margin: auto;
+}
+
+#logo_img {
+  width: 45%;
 }
 
 #service_img {
+  display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 200px;
+
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 45%;
+  max-width: 200px;
+  min-width: 100px;
 }
 
 #lost_img {
+  display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 100px;
+
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 45%;
+  max-width: 100px;
+  min-width: 70px;
 }
 
 #found_img {
+  display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 100px;
-}
 
-#service_txt {
-  margin-left: auto;
-  margin-right: auto;
-  width: 300px;
-}
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 
-#lost_txt {
-  margin-left: 8%;
-  width: 300px;
-}
-
-#found_txt {
-  margin-right: 8%;
-  width: 300px;
+  width: 45%;
+  max-width: 100px;
+  min-width: 70px;
 }
