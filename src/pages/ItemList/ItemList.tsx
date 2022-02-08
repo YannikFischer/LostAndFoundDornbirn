@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./ItemList.scss";
-import rat from "../../images/Anton.jpg";
 import Item from "../../components/item/item";
 
 const ItemList = () => {
   const [items, setItems] = useState([
     { title: "eins", description: "lost it yesterday" },
     { title: "zwei", description: "xxx it yesterday" },
+    { title: "drei", description: "ayo" },
+    { title: "vier", description: "xd" },
   ]);
 
   useEffect(() => {

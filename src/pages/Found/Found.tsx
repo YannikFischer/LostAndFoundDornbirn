@@ -114,13 +114,13 @@ const Found = () => {
           <h1>
             Submit your Found Item <br />
             <br />
-            Select a Title and description that fits the Item you have found{" "}
+            Select a Title and Description that fits the Item you have found{" "}
             <br />
             <br />
             Choose a Category, Color, Location and an Image
             <br />
             <br />
-            Enter your contact information and hit Submit
+            Enter your Contact Information and hit Submit
           </h1>
         </div>
       </div>

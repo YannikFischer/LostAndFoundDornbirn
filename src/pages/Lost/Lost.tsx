@@ -63,9 +63,7 @@ const Lost = () => {
           <h1>
             Search your Lost Item <br />
             <br />
-            Select a Title that fits the Item you have Lost <br />
-            <br />
-            Choose a Category, Color and location and hit Submit
+            Choose a Category, Color and Location and hit Submit
           </h1>
         </div>
       </div>

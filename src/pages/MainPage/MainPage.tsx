@@ -22,7 +22,7 @@ const MainPage = () => {
               <h1>Lost</h1>
               <p>
                 Fast search for lost items by filling in the description of the
-                item on the lost page.
+                item on the Lost page.
               </p>
             </div>
           </div>
@@ -34,8 +34,8 @@ const MainPage = () => {
             <div id="text">
               <h1>Service</h1>
               <p>
-                Our lost and found service shows the items in the database that
-                are likely to match the description of your search.
+                Our lost and found service shows the items in our database that
+                are most likely to match the description of your search.
               </p>
             </div>
           </div>
@@ -48,7 +48,7 @@ const MainPage = () => {
               <h1>Found</h1>
               <p>
                 Easy and fast submission for a found item by filling in the
-                description of the description of the item on the found page
+                description of the item on the found page
               </p>
             </div>
           </div>
