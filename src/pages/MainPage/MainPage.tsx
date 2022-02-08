@@ -7,6 +7,7 @@ import userRight from "../../images/User_Right.png";
 import type { JSXElementConstructor } from "react";
 
 const MainPage = () => {
+  console.log(process.env);
   return (
     <div id="content">
       <div id="logo_div">
