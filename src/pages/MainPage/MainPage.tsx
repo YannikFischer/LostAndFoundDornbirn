@@ -7,6 +7,7 @@ import userRight from "../../images/User_Right.png";
 import type { JSXElementConstructor } from "react";
 
 const MainPage = () => {
+  console.log(process.env);
   return (
     <div id="content">
       <div id="logo_div">
@@ -21,8 +22,8 @@ const MainPage = () => {
             <div id="text">
               <h1>Lost</h1>
               <p>
-                Fast search for lost items by filling in the description of the
-                item on the lost page.
+                Fast search for lost items by filling in the
+                description of the item on the lost page.
               </p>
             </div>
           </div>
@@ -34,21 +35,27 @@ const MainPage = () => {
             <div id="text">
               <h1>Service</h1>
               <p>
-                Our lost and found service shows the items in the database that
-                are likely to match the description of your search.
+                Our lost and found service shows the items in the
+                database that are likely to match the description of
+                your search.
               </p>
             </div>
           </div>
 
           <div id="found_block">
             <div id="image">
-              <img src={userRight} alt="Found_User_img" id="found_img" />
+              <img
+                src={userRight}
+                alt="Found_User_img"
+                id="found_img"
+              />
             </div>
             <div id="text">
               <h1>Found</h1>
               <p>
-                Easy and fast submission for a found item by filling in the
-                description of the description of the item on the found page
+                Easy and fast submission for a found item by filling
+                in the description of the description of the item on
+                the found page
               </p>
             </div>
           </div>

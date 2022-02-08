@@ -1,7 +1,25 @@
 import React from "react";
 import "./Found.scss";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+import { db } from "../../firebase/";
 
 const Found = () => {
+  const readItems = async () => {
+    const querySnapshot = await getDocs(collection(db, "items"));
+    querySnapshot.forEach(doc => {
+      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+    });
+  };
+
+  const uploadItem = async () => {
+    const docRef = await addDoc(collection(db, "users"), {
+      first: "Ada",
+      last: "Lovelace",
+      born: 1815
+    });
+    console.log("Document written with ID: ", docRef.id);
+  };
+
   return (
     <div>
       <div className="found_wrapper">
@@ -68,7 +86,9 @@ const Found = () => {
               </div>
             </div>
             <div className="select">
-              <label className="label_uploadImage">Upload Image</label>
+              <label className="label_uploadImage">
+                Upload Image
+              </label>
               <input
                 type="file"
                 id="uploadImage"
@@ -105,8 +125,19 @@ const Found = () => {
             </div>
           </div>
           <div className="container">
-            <button id="button" className="submit">
-              Submit
+            <button
+              id="button"
+              className="submit"
+              onClick={() => readItems()}
+            >
+              Read Items (Read items)
+            </button>
+            <button
+              id="button"
+              className="submit"
+              onClick={() => uploadItem()}
+            >
+              Submit (Write item)
             </button>
           </div>
         </div>
@@ -114,8 +145,8 @@ const Found = () => {
           <h1>
             Submit your Found Item <br />
             <br />
-            Select a Title and description that fits the Item you have found{" "}
-            <br />
+            Select a Title and description that fits the Item you have
+            found <br />
             <br />
             Choose a Category, Color, Location and an Image
             <br />
