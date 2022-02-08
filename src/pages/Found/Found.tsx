@@ -12,10 +12,9 @@ const Found = () => {
   };
 
   const uploadItem = async () => {
-    const docRef = await addDoc(collection(db, "users"), {
-      first: "Ada",
-      last: "Lovelace",
-      born: 1815,
+    const docRef = await addDoc(collection(db, "items"), {
+      title: "Ada",
+      description: "Lovelace",
     });
     console.log("Document written with ID: ", docRef.id);
   };
