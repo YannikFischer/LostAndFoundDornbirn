@@ -7,22 +7,15 @@ const ItemList = () => {
     { title: "eins", description: "lost it yesterday" },
     { title: "zwei", description: "xxx it yesterday" },
     { title: "drei", description: "ayo" },
-    { title: "vier", description: "xd" },
+    { title: "vier", description: "xd" }
   ]);
-
-  useEffect(() => {
-    fetch("http://localhost:4041/users")
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        setItems(json.users);
-      });
-  }, []);
 
   function getItemList() {
     let widgets: JSX.Element[] = [];
-    items.forEach((item) => {
-      widgets.push(<Item title={item.title} description={item.description} />);
+    items.forEach(item => {
+      widgets.push(
+        <Item title={item.title} description={item.description} />
+      );
     });
     return widgets;
   }

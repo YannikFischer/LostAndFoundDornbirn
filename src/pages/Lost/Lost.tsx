@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { Category } from "../../types/category";
+import { Color } from "../../types/color";
+import { Location } from "../../types/location";
 import "./Lost.scss";
 
 const Lost = () => {
+  const [category, setCategory] = useState<Category>(Category.Other);
+  const [color, setColor] = useState<Color>(Color.Other);
+  const [location, setLocation] = useState<Location>(Location.Other);
+
+  const search = () => {
+    window.location.href = "itemList";
+  };
+
   return (
     <div>
       <link
@@ -15,46 +26,59 @@ const Lost = () => {
             <div className="select">
               <label className="label_category">Category</label>
               <div className="select_div">
-                <select>
-                  <option>Phones</option>
-                  <option>Headphones</option>
-                  <option>Other Electronics</option>
-                  <option>Clothes</option>
-                  <option>Others</option>
+                <select
+                  value={category}
+                  onChange={e =>
+                    setCategory(e.target.value as Category)
+                  }
+                >
+                  {Object.values(Category).map((category, i) => (
+                    <option value={category} key={`${category}-${i}`}>
+                      {category}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
             <div className="select">
               <label className="label_color">Color</label>
               <div className="select_div">
-                <select>
-                  <option>Black</option>
-                  <option>White</option>
-                  <option>Blue</option>
-                  <option>Red</option>
-                  <option>Yellow</option>
-                  <option>Green</option>
-                  <option>Gray</option>
-                  <option>Brown</option>
-                  <option>Others</option>
+                <select
+                  value={color}
+                  onChange={e => setColor(e.target.value as Color)}
+                >
+                  {Object.values(Color).map((color, i) => (
+                    <option value={color} key={`${color}-${i}`}>
+                      {color}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
             <div className="select">
               <label className="label_location">Location</label>
               <div className="select_div">
-                <select>
-                  <option>Turnsaal</option>
-                  <option>Klassen Erdgeschoss</option>
-                  <option>Klassen 1. Stock</option>
-                  <option>Klassen 2. Stock</option>
-                  <option>Woanders</option>
+                <select
+                  value={location}
+                  onChange={e =>
+                    setLocation(e.target.value as Location)
+                  }
+                >
+                  {Object.values(Location).map((location, i) => (
+                    <option value={location} key={`${location}-${i}`}>
+                      {location}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
           </div>
           <div className="container">
-            <button id="button" className="submit">
+            <button
+              id="button"
+              className="submit"
+              onClick={() => search()}
+            >
               Search
             </button>
           </div>
