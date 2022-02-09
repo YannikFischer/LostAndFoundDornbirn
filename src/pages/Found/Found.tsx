@@ -6,6 +6,7 @@ import { Category } from "../../types/category";
 import { Location } from "../../types/location";
 import { Color } from "../../types/color";
 import useDebounce from "../../hooks/useDebounce";
+import { v4 as uuidv4 } from "uuid";
 
 const Found = () => {
   const defaultDebounce = 2000 as const;
@@ -27,7 +28,8 @@ const Found = () => {
       color,
       location,
       phone,
-      email
+      email,
+      image
     };
 
     Object.entries(uploadItem).forEach(
@@ -35,20 +37,14 @@ const Found = () => {
     );
 
     if (isValid) {
-      const docRef = await addDoc(
-        collection(db, "items"),
-        uploadItem
-      );
-      console.log("Document written with ID: ", docRef);
+      await addDoc(collection(db, "items"), uploadItem);
       setFeedback("Successfully uploaded Item! Thank you!");
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      useDebounce(() => setFeedback(""), defaultDebounce, [feedback]);
+      setTimeout(() => setFeedback(""), defaultDebounce);
     } else {
       setFeedback(
         "Something went wrong, please check your input fields!"
       );
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      useDebounce(() => setFeedback(""), defaultDebounce, [feedback]);
+      setTimeout(() => setFeedback(""), defaultDebounce);
     }
   };
 
@@ -57,6 +53,7 @@ const Found = () => {
   const [category, setCategory] = useState<Category>(Category.Other);
   const [color, setColor] = useState<any>(Color.Other);
   const [location, setLocation] = useState<Location>(Location.Other);
+  const [image, setImage] = useState<any>(null);
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
@@ -150,9 +147,26 @@ const Found = () => {
                 className="select_uploadImage"
                 name="uploadImage"
                 accept="image/*"
+                onChange={e => {
+                  e.target.files &&
+                    e.target.files[0] &&
+                    setImage(e.target.files[0]);
+                }}
               />
               <div className="preview">
-                {/* <img v-if="url" :src="url" /> */}
+                {image && (
+                  <div>
+                    <img
+                      alt="not fount"
+                      width={"250px"}
+                      src={URL.createObjectURL(image)}
+                    />
+                    <br />
+                    <button onClick={() => setImage(null)}>
+                      Remove
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
             <div className="contactInformationh1Div">
