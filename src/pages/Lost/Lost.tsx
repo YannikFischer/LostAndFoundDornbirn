@@ -1,4 +1,6 @@
+import { doc, getDoc } from "firebase/firestore";
 import React, { useState } from "react";
+import { db } from "../../firebase";
 import { Category } from "../../types/category";
 import { Color } from "../../types/color";
 import { Location } from "../../types/location";
@@ -9,8 +11,17 @@ const Lost = () => {
   const [color, setColor] = useState<Color>(Color.Other);
   const [location, setLocation] = useState<Location>(Location.Other);
 
-  const search = () => {
-    window.location.href = "itemList";
+  const search = async () => {
+    // window.location.href = "itemList";
+    const docRef = doc(db, "items", "");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
   };
 
   return (
