@@ -5,9 +5,10 @@ import { db } from "../../firebase/";
 import { Category } from "../../types/category";
 import { Location } from "../../types/location";
 import { Color } from "../../types/color";
+import useDebounce from "../../hooks/useDebounce";
 
 const Found = () => {
-  const defaultDebounce = 1000 as const;
+  const defaultDebounce = 2000 as const;
 
   const readItems = async () => {
     const querySnapshot = await getDocs(collection(db, "items"));
@@ -39,8 +40,15 @@ const Found = () => {
         uploadItem
       );
       console.log("Document written with ID: ", docRef);
+      setFeedback("Successfully uploaded Item! Thank you!");
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useDebounce(() => setFeedback(""), defaultDebounce, [feedback]);
     } else {
-      console.log("invalid");
+      setFeedback(
+        "Something went wrong, please check your input fields!"
+      );
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useDebounce(() => setFeedback(""), defaultDebounce, [feedback]);
     }
   };
 
@@ -51,6 +59,8 @@ const Found = () => {
   const [location, setLocation] = useState<Location>(Location.Other);
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+
+  const [feedback, setFeedback] = useState<string>("");
 
   return (
     <div>
@@ -188,6 +198,8 @@ const Found = () => {
             >
               Submit (Write item)
             </button>
+
+            <p className="feedback">{feedback}</p>
           </div>
         </div>
         <div className="text_container">
