@@ -4,6 +4,7 @@ import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../../firebase/";
 import { Category } from "../../types/category";
 import { Location } from "../../types/location";
+import { Color } from "../../types/color";
 
 const Found = () => {
   const defaultDebounce = 1000 as const;
@@ -16,20 +17,29 @@ const Found = () => {
   };
 
   const uploadItem = async () => {
-    const docRef = await addDoc(collection(db, "items"), {
-      title: "Ada",
-      description: "Lovelace"
+    console.log({
+      title,
+      description,
+      category,
+      color,
+      location,
+      phone,
+      email
     });
-    console.log("Document written with ID: ", docRef.id);
+    // const docRef = await addDoc(collection(db, "items"), {
+    //   title: "Ada",
+    //   description: "Lovelace"
+    // });
+    // console.log("Document written with ID: ", docRef.id);
   };
 
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [category, setCategory] = useState<Category>(Category.Other);
-  const [color, setColor] = useState<any>("");
-  const [location, setLocation] = useState<Location>(
-    Location.Turnsaal
-  );
+  const [color, setColor] = useState<any>(Color.Other);
+  const [location, setLocation] = useState<Location>(Location.Other);
+  const [phone, setPhone] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
 
   return (
     <div>
@@ -44,6 +54,8 @@ const Found = () => {
                 name="title_id"
                 placeholder="Item Title"
                 type="text"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
               />
             </div>
             <div className="select">
@@ -54,45 +66,56 @@ const Found = () => {
                 name="description_id"
                 placeholder="Item Description"
                 type="text"
+                value={description}
+                onChange={e => setDescription(e.target.value)}
               />
             </div>
             <div className="select">
               <label className="label_category">Category</label>
               <div className="select_div">
-                <select>
-                  <option>Phones</option>
-                  <option>Headphones</option>
-                  <option>Other Electronics</option>
-                  <option>Clothes</option>
-                  <option>Others</option>
+                <select
+                  value={category}
+                  onChange={e =>
+                    setCategory(e.target.value as Category)
+                  }
+                >
+                  {Object.values(Category).map((category, i) => (
+                    <option value={category} key={`${category}-${i}`}>
+                      {category}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
             <div className="select">
               <label className="label_color">Color</label>
               <div className="select_div">
-                <select>
-                  <option>Black</option>
-                  <option>White</option>
-                  <option>Blue</option>
-                  <option>Red</option>
-                  <option>Yellow</option>
-                  <option>Green</option>
-                  <option>Gray</option>
-                  <option>Brown</option>
-                  <option>Others</option>
+                <select
+                  value={color}
+                  onChange={e => setColor(e.target.value as Color)}
+                >
+                  {Object.values(Color).map((color, i) => (
+                    <option value={color} key={`${color}-${i}`}>
+                      {color}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
             <div className="select">
               <label className="label_location">Location</label>
               <div className="select_div">
-                <select>
-                  <option>Turnsaal</option>
-                  <option>Klassen Erdgeschoss</option>
-                  <option>Klassen 1. Stock</option>
-                  <option>Klassen 2. Stock</option>
-                  <option>Woanders</option>
+                <select
+                  value={location}
+                  onChange={e =>
+                    setLocation(e.target.value as Location)
+                  }
+                >
+                  {Object.values(Location).map((location, i) => (
+                    <option value={location} key={`${location}-${i}`}>
+                      {location}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>

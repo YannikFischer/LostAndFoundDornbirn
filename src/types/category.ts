@@ -1,7 +1,7 @@
 export enum Category {
-  "Phones",
-  "Headphones",
-  "Other Electronics",
-  "Clothes",
-  "Other"
+  "Phones" = "Phones",
+  "Headphones" = "Headphones",
+  "Other Electronics" = "Other Electronics",
+  "Clothes" = "Clothes",
+  "Other" = "Other"
 }
