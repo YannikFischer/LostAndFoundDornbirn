@@ -6,7 +6,6 @@ import userLeft from "../../images/User_Left.png";
 import userRight from "../../images/User_Right.png";
 
 const MainPage = () => {
-  console.log(process.env);
   return (
     <div id="content">
       <div id="logo_div">
