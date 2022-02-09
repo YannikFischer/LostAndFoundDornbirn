@@ -5,7 +5,6 @@ import { db, storage } from "../../firebase/";
 import { Category } from "../../types/category";
 import { Location } from "../../types/location";
 import { Color } from "../../types/color";
-import useDebounce from "../../hooks/useDebounce";
 import { v4 as uuidv4 } from "uuid";
 import { ref, uploadBytes } from "firebase/storage";
 
@@ -44,7 +43,7 @@ const Found = () => {
         await addDoc(collection(db, "items"), uploadItem);
         const storageRef = ref(storage, imageID);
 
-        await uploadBytes(storageRef, image!);
+        uploadBytes(storageRef, image!);
         setFeedback("Successfully uploaded Item! Thank you!");
         setTimeout(() => setFeedback(""), defaultDebounce);
       } else {
