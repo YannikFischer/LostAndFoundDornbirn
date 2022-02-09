@@ -30,8 +30,10 @@ $gray: #bbbbbb;
   box-shadow: none;
   -webkit-transition: border-color ease-in-out 0.15s,
     -webkit-box-shadow ease-in-out 0.15s;
-  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s,
+    box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s,
+    box-shadow ease-in-out 0.15s;
 }
 
 .preview img {
@@ -217,4 +219,9 @@ option {
   &:active {
     letter-spacing: 2px;
   }
+}
+
+.feedback {
+  font-size: 20px;
+  font-weight: 600;
 }

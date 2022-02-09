@@ -1,23 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Found.scss";
 import { collection, getDocs, addDoc } from "firebase/firestore";
-import { db } from "../../firebase/";
+import { db, storage } from "../../firebase/";
+import { Category } from "../../types/category";
+import { Location } from "../../types/location";
+import { Color } from "../../types/color";
+import { v4 as uuidv4 } from "uuid";
+import { ref, uploadBytes } from "firebase/storage";
 
 const Found = () => {
+  const defaultDebounce = 2000 as const;
+
   const readItems = async () => {
     const querySnapshot = await getDocs(collection(db, "items"));
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach(doc => {
       console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
     });
   };
 
   const uploadItem = async () => {
-    const docRef = await addDoc(collection(db, "items"), {
-      title: "Ada",
-      description: "Lovelace",
-    });
-    console.log("Document written with ID: ", docRef.id);
+    try {
+      let isValid: boolean = true;
+
+      const imageID = uuidv4();
+
+      const uploadItem = {
+        title,
+        description,
+        category,
+        color,
+        location,
+        phone,
+        email,
+        image: imageID
+      };
+
+      Object.entries(uploadItem).forEach(
+        async ([key, value]) => !value && (isValid = false)
+      );
+
+      if (isValid) {
+        await addDoc(collection(db, "items"), uploadItem);
+        const storageRef = ref(storage, imageID);
+
+        uploadBytes(storageRef, image!);
+        setFeedback("Successfully uploaded Item! Thank you!");
+        setTimeout(() => setFeedback(""), defaultDebounce);
+      } else {
+        setFeedback(
+          "Something went wrong, please check your input fields!"
+        );
+        setTimeout(() => setFeedback(""), defaultDebounce);
+      }
+    } catch (error) {
+      console.log(error);
+      setFeedback(
+        "Something went wrong, please check your input fields!"
+      );
+      setTimeout(() => setFeedback(""), defaultDebounce);
+    }
   };
+
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [category, setCategory] = useState<Category>(Category.Other);
+  const [color, setColor] = useState<any>(Color.Other);
+  const [location, setLocation] = useState<Location>(Location.Other);
+  const [image, setImage] = useState<File | null>(null);
+  const [phone, setPhone] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+
+  const [feedback, setFeedback] = useState<string>("");
 
   return (
     <div>
@@ -32,6 +85,8 @@ const Found = () => {
                 name="title_id"
                 placeholder="Item Title"
                 type="text"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
               />
             </div>
             <div className="select">
@@ -42,59 +97,89 @@ const Found = () => {
                 name="description_id"
                 placeholder="Item Description"
                 type="text"
+                value={description}
+                onChange={e => setDescription(e.target.value)}
               />
             </div>
             <div className="select">
               <label className="label_category">Category</label>
               <div className="select_div">
-                <select>
-                  <option>Phones</option>
-                  <option>Headphones</option>
-                  <option>Other Electronics</option>
-                  <option>Clothes</option>
-                  <option>Others</option>
+                <select
+                  value={category}
+                  onChange={e =>
+                    setCategory(e.target.value as Category)
+                  }
+                >
+                  {Object.values(Category).map((category, i) => (
+                    <option value={category} key={`${category}-${i}`}>
+                      {category}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
             <div className="select">
               <label className="label_color">Color</label>
               <div className="select_div">
-                <select>
-                  <option>Black</option>
-                  <option>White</option>
-                  <option>Blue</option>
-                  <option>Red</option>
-                  <option>Yellow</option>
-                  <option>Green</option>
-                  <option>Gray</option>
-                  <option>Brown</option>
-                  <option>Others</option>
+                <select
+                  value={color}
+                  onChange={e => setColor(e.target.value as Color)}
+                >
+                  {Object.values(Color).map((color, i) => (
+                    <option value={color} key={`${color}-${i}`}>
+                      {color}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
             <div className="select">
               <label className="label_location">Location</label>
               <div className="select_div">
-                <select>
-                  <option>Turnsaal</option>
-                  <option>Klassen Erdgeschoss</option>
-                  <option>Klassen 1. Stock</option>
-                  <option>Klassen 2. Stock</option>
-                  <option>Woanders</option>
+                <select
+                  value={location}
+                  onChange={e =>
+                    setLocation(e.target.value as Location)
+                  }
+                >
+                  {Object.values(Location).map((location, i) => (
+                    <option value={location} key={`${location}-${i}`}>
+                      {location}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
             <div className="select">
-              <label className="label_uploadImage">Upload Image</label>
+              <label className="label_uploadImage">
+                Upload Image
+              </label>
               <input
                 type="file"
                 id="uploadImage"
                 className="select_uploadImage"
                 name="uploadImage"
                 accept="image/*"
+                onChange={e => {
+                  e.target.files &&
+                    e.target.files[0] &&
+                    setImage(e.target.files[0]);
+                }}
               />
               <div className="preview">
-                {/* <img v-if="url" :src="url" /> */}
+                {image && (
+                  <div>
+                    <img
+                      alt="not fount"
+                      width={"250px"}
+                      src={URL.createObjectURL(image)}
+                    />
+                    <br />
+                    <button onClick={() => setImage(null)}>
+                      Remove
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
             <div className="contactInformationh1Div">
@@ -108,6 +193,8 @@ const Found = () => {
                 name="phone_id"
                 placeholder="Phone Number"
                 type="number"
+                value={phone}
+                onChange={e => setPhone(e.target.value)}
               />
             </div>
             <div className="select">
@@ -118,24 +205,36 @@ const Found = () => {
                 name="mail_id"
                 placeholder="E-mail"
                 type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
               />
             </div>
           </div>
           <div className="container">
-            <button id="button" className="submit" onClick={() => readItems()}>
+            <button
+              id="button"
+              className="submit"
+              onClick={() => readItems()}
+            >
               Read Items (Read items)
             </button>
-            <button id="button" className="submit" onClick={() => uploadItem()}>
+            <button
+              id="button"
+              className="submit"
+              onClick={() => uploadItem()}
+            >
               Submit (Write item)
             </button>
+
+            <p className="feedback">{feedback}</p>
           </div>
         </div>
         <div className="text_container">
           <h1>
             Submit your Found Item <br />
             <br />
-            Select a Title and Description that fits the Item you have found{" "}
-            <br />
+            Select a Title and Description that fits the Item you have
+            found <br />
             <br />
             Choose a Category, Color, Location and an Image
             <br />
