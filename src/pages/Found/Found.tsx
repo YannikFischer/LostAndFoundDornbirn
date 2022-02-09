@@ -17,7 +17,7 @@ const Found = () => {
   };
 
   const uploadItem = async () => {
-    console.log({
+    const uploadItem = {
       title,
       description,
       category,
@@ -25,12 +25,21 @@ const Found = () => {
       location,
       phone,
       email
+    };
+
+    console.log(uploadItem);
+
+    Object.entries(uploadItem).forEach(async (key, value) => {
+      if (!value) {
+        return console.log("invalid");
+      } else {
+        const docRef = await addDoc(collection(db, "items"), {
+          title: "Ada",
+          description: "Lovelace"
+        });
+        console.log("Document written with ID: ", docRef.id);
+      }
     });
-    // const docRef = await addDoc(collection(db, "items"), {
-    //   title: "Ada",
-    //   description: "Lovelace"
-    // });
-    // console.log("Document written with ID: ", docRef.id);
   };
 
   const [title, setTitle] = useState<string>("");
@@ -145,6 +154,8 @@ const Found = () => {
                 name="phone_id"
                 placeholder="Phone Number"
                 type="number"
+                value={phone}
+                onChange={e => setPhone(e.target.value)}
               />
             </div>
             <div className="select">
@@ -155,6 +166,8 @@ const Found = () => {
                 name="mail_id"
                 placeholder="E-mail"
                 type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
               />
             </div>
           </div>
