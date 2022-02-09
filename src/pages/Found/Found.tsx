@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./Found.scss";
 import { collection, getDocs, addDoc } from "firebase/firestore";
-import { db } from "../../firebase/";
+import { db, storage } from "../../firebase/";
 import { Category } from "../../types/category";
 import { Location } from "../../types/location";
 import { Color } from "../../types/color";
 import useDebounce from "../../hooks/useDebounce";
 import { v4 as uuidv4 } from "uuid";
+import { ref, uploadBytes } from "firebase/storage";
 
 const Found = () => {
   const defaultDebounce = 2000 as const;
@@ -19,28 +20,41 @@ const Found = () => {
   };
 
   const uploadItem = async () => {
-    let isValid: boolean = true;
+    try {
+      let isValid: boolean = true;
 
-    const uploadItem = {
-      title,
-      description,
-      category,
-      color,
-      location,
-      phone,
-      email,
-      image
-    };
+      const imageID = uuidv4();
 
-    Object.entries(uploadItem).forEach(
-      async ([key, value]) => !value && (isValid = false)
-    );
+      const uploadItem = {
+        title,
+        description,
+        category,
+        color,
+        location,
+        phone,
+        email,
+        image: imageID
+      };
 
-    if (isValid) {
-      await addDoc(collection(db, "items"), uploadItem);
-      setFeedback("Successfully uploaded Item! Thank you!");
-      setTimeout(() => setFeedback(""), defaultDebounce);
-    } else {
+      Object.entries(uploadItem).forEach(
+        async ([key, value]) => !value && (isValid = false)
+      );
+
+      if (isValid) {
+        await addDoc(collection(db, "items"), uploadItem);
+        const storageRef = ref(storage, imageID);
+
+        await uploadBytes(storageRef, image!);
+        setFeedback("Successfully uploaded Item! Thank you!");
+        setTimeout(() => setFeedback(""), defaultDebounce);
+      } else {
+        setFeedback(
+          "Something went wrong, please check your input fields!"
+        );
+        setTimeout(() => setFeedback(""), defaultDebounce);
+      }
+    } catch (error) {
+      console.log(error);
       setFeedback(
         "Something went wrong, please check your input fields!"
       );
@@ -53,7 +67,7 @@ const Found = () => {
   const [category, setCategory] = useState<Category>(Category.Other);
   const [color, setColor] = useState<any>(Color.Other);
   const [location, setLocation] = useState<Location>(Location.Other);
-  const [image, setImage] = useState<any>(null);
+  const [image, setImage] = useState<File | null>(null);
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
@@ -179,7 +193,7 @@ const Found = () => {
                 className="select_phone"
                 name="phone_id"
                 placeholder="Phone Number"
-                type=""
+                type="number"
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
               />
