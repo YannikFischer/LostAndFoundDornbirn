@@ -17,6 +17,8 @@ const Found = () => {
   };
 
   const uploadItem = async () => {
+    let isValid: boolean = true;
+
     const uploadItem = {
       title,
       description,
@@ -27,19 +29,19 @@ const Found = () => {
       email
     };
 
-    console.log(uploadItem);
+    Object.entries(uploadItem).forEach(
+      async ([key, value]) => !value && (isValid = false)
+    );
 
-    Object.entries(uploadItem).forEach(async (key, value) => {
-      if (!value) {
-        return console.log("invalid");
-      } else {
-        const docRef = await addDoc(collection(db, "items"), {
-          title: "Ada",
-          description: "Lovelace"
-        });
-        console.log("Document written with ID: ", docRef.id);
-      }
-    });
+    if (isValid) {
+      const docRef = await addDoc(
+        collection(db, "items"),
+        uploadItem
+      );
+      console.log("Document written with ID: ", docRef);
+    } else {
+      console.log("invalid");
+    }
   };
 
   const [title, setTitle] = useState<string>("");
@@ -153,7 +155,7 @@ const Found = () => {
                 className="select_phone"
                 name="phone_id"
                 placeholder="Phone Number"
-                type="number"
+                type=""
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
               />
