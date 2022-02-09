@@ -9,6 +9,7 @@ import Items from "./pages/ItemList/ItemList";
 import Preview from "./pages/Preview/Preview";
 import MainPage from "./pages/MainPage/MainPage";
 import ItemList from "./pages/ItemList/ItemList";
+import Test from "./pages/testing/Test";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/found" element={<Found />} />
           <Route path="/itemList" element={<ItemList />} />
           <Route path="/preview" element={<Preview />} />
+          <Route path="/test" element={<Test />} />
           {/* <Route path="*" element={<Page404 />} /> */}
         </Routes>
       </BrowserRouter>

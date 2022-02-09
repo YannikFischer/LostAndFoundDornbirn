@@ -1,0 +1,28 @@
+.main {
+  margin-top: 200px;
+}
+
+.main button {
+  margin-left: 50px;
+  outline: none;
+  height: 60px;
+  margin-top: 30px;
+  text-align: center;
+  width: 200px;
+  border-radius: 10px;
+  background: #fff;
+  border: 2px solid #3a89c2;
+  color: #3a89c2;
+  letter-spacing: 1px;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 0;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    color: white;
+    background: #3a89c2;
+  }
+}

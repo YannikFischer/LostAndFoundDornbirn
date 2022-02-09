@@ -4,6 +4,8 @@ import Logo from "../../images/LogoNavbar.png";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const hamburger = true;
+
   return (
     <div>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,7 +14,10 @@ const Navbar = () => {
         rel="stylesheet"
       />
       <nav className="navbar">
-        <div className="navbar_toggle" id="mobile-menu">
+        <div
+          className={`navbar_toggle ${hamburger ? "is-active" : ""}`}
+          id="mobile-menu"
+        >
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
