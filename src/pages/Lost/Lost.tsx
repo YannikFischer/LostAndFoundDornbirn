@@ -4,7 +4,7 @@ import {
   DocumentData,
   getDoc,
   getDocs,
-  QueryDocumentSnapshot
+  QueryDocumentSnapshot,
 } from "firebase/firestore";
 import React, { useState } from "react";
 import { db } from "../../firebase";
@@ -35,7 +35,7 @@ const Lost = () => {
 
   const readItems = async () => {
     const tempItems: DocumentData[] = [];
-    (await getDocs(collection(db, "items"))).forEach(doc =>
+    (await getDocs(collection(db, "items"))).forEach((doc) =>
       tempItems.push(doc.data())
     );
 
@@ -57,9 +57,7 @@ const Lost = () => {
               <div className="select_div">
                 <select
                   value={category}
-                  onChange={e =>
-                    setCategory(e.target.value as Category)
-                  }
+                  onChange={(e) => setCategory(e.target.value as Category)}
                 >
                   {Object.values(Category).map((category, i) => (
                     <option value={category} key={`${category}-${i}`}>
@@ -74,7 +72,7 @@ const Lost = () => {
               <div className="select_div">
                 <select
                   value={color}
-                  onChange={e => setColor(e.target.value as Color)}
+                  onChange={(e) => setColor(e.target.value as Color)}
                 >
                   {Object.values(Color).map((color, i) => (
                     <option value={color} key={`${color}-${i}`}>
@@ -89,9 +87,7 @@ const Lost = () => {
               <div className="select_div">
                 <select
                   value={location}
-                  onChange={e =>
-                    setLocation(e.target.value as Location)
-                  }
+                  onChange={(e) => setLocation(e.target.value as Location)}
                 >
                   {Object.values(Location).map((location, i) => (
                     <option value={location} key={`${location}-${i}`}>
@@ -103,11 +99,7 @@ const Lost = () => {
             </div>
           </div>
           <div className="container">
-            <button
-              id="button"
-              className="submit"
-              onClick={() => readItems()}
-            >
+            <button id="button" className="submit" onClick={() => readItems()}>
               Search
             </button>
           </div>
