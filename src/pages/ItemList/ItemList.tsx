@@ -7,15 +7,13 @@ const ItemList = () => {
     { title: "eins", description: "lost it yesterday" },
     { title: "zwei", description: "xxx it yesterday" },
     { title: "drei", description: "ayo" },
-    { title: "vier", description: "xd" }
+    { title: "vier", description: "xd" },
   ]);
 
   function getItemList() {
     let widgets: JSX.Element[] = [];
-    items.forEach(item => {
-      widgets.push(
-        <Item title={item.title} description={item.description} />
-      );
+    items.forEach((item) => {
+      widgets.push(<Item title={item.title} description={item.description} />);
     });
     return widgets;
   }

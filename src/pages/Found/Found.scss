@@ -30,10 +30,8 @@ $gray: #bbbbbb;
   box-shadow: none;
   -webkit-transition: border-color ease-in-out 0.15s,
     -webkit-box-shadow ease-in-out 0.15s;
-  -o-transition: border-color ease-in-out 0.15s,
-    box-shadow ease-in-out 0.15s;
-  transition: border-color ease-in-out 0.15s,
-    box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
 .preview img {
@@ -68,8 +66,7 @@ $gray: #bbbbbb;
 }
 
 .contactInformationh1Div h1 {
-  border-bottom: 2px black solid;
-  width: 350px;
+  width: 50%;
 }
 
 .found_wrapper {
@@ -150,6 +147,10 @@ $gray: #bbbbbb;
   /* remove the arrows on the right of the number input field */
   display: none;
 }
+.select_phone::-webkit-inner-spin-button {
+  /* remove the arrows on the right of the number input field */
+  display: none;
+}
 
 select {
   -moz-appearance: none;
@@ -224,4 +225,86 @@ option {
 .feedback {
   font-size: 20px;
   font-weight: 600;
+}
+
+@media screen and (max-width: 960px) {
+  .select {
+    position: none;
+    margin: 10px;
+    margin-bottom: 60px;
+    width: 50%;
+  }
+
+  .label_title {
+    font-size: 30px;
+  }
+
+  .label_description {
+    font-size: 30px;
+  }
+
+  .label_category {
+    font-size: 30px;
+  }
+
+  .label_color {
+    font-size: 30px;
+  }
+
+  .label_location {
+    font-size: 30px;
+  }
+
+  .label_title {
+    font-size: 30px;
+  }
+
+  .label_uploadImage {
+    font-size: 30px;
+  }
+
+  .label_phone {
+    font-size: 30px;
+  }
+
+  .label_mail {
+    font-size: 30px;
+  }
+
+  .text_container {
+    display: none;
+  }
+
+  .contactInformationh1Div {
+    position: none;
+    margin-left: -18%;
+    display: flex;
+  }
+
+  .select_phone::-webkit-inner-spin-button {
+    /* remove the arrows on the right of the number input field */
+    display: none;
+  }
+
+  .select_phone::-moz-inner-spin-button {
+    /* remove the arrows on the right of the number input field */
+    display: none;
+  }
+
+  .remove {
+    width: 25%;
+    height: 40px;
+    font-weight: bold;
+  }
+
+  .contactInformationh1Div h1 {
+    font-size: 30px;
+    display: flex;
+    border-bottom: 2px black solid;
+    font-weight: bold;
+  }
+
+  .submit {
+    margin-left: -26px;
+  }
 }

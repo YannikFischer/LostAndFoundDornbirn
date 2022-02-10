@@ -1,10 +1,11 @@
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import React, { useState } from "react";
 import { db } from "../../firebase";
 import { Category } from "../../types/category";
 import { Color } from "../../types/color";
 import { Location } from "../../types/location";
 import "./Lost.scss";
+import Item from "../../components/item/item";
 
 const Lost = () => {
   const [category, setCategory] = useState<Category>(Category.Other);
@@ -24,6 +25,22 @@ const Lost = () => {
     }
   };
 
+  const [items, setItems] = useState([
+    { title: "eins", description: "lost it yesterday" },
+  ]);
+
+  const readItems = async () => {
+    const querySnapshot = await getDocs(collection(db, "items"));
+    let itemContainers: JSX.Element[] = [];
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+      items.push(doc.data().title, doc.data().description);
+      console.log(items);
+    });
+
+    return itemContainers;
+  };
+
   return (
     <div>
       <link
@@ -39,9 +56,7 @@ const Lost = () => {
               <div className="select_div">
                 <select
                   value={category}
-                  onChange={e =>
-                    setCategory(e.target.value as Category)
-                  }
+                  onChange={(e) => setCategory(e.target.value as Category)}
                 >
                   {Object.values(Category).map((category, i) => (
                     <option value={category} key={`${category}-${i}`}>
@@ -56,7 +71,7 @@ const Lost = () => {
               <div className="select_div">
                 <select
                   value={color}
-                  onChange={e => setColor(e.target.value as Color)}
+                  onChange={(e) => setColor(e.target.value as Color)}
                 >
                   {Object.values(Color).map((color, i) => (
                     <option value={color} key={`${color}-${i}`}>
@@ -71,9 +86,7 @@ const Lost = () => {
               <div className="select_div">
                 <select
                   value={location}
-                  onChange={e =>
-                    setLocation(e.target.value as Location)
-                  }
+                  onChange={(e) => setLocation(e.target.value as Location)}
                 >
                   {Object.values(Location).map((location, i) => (
                     <option value={location} key={`${location}-${i}`}>
@@ -85,11 +98,7 @@ const Lost = () => {
             </div>
           </div>
           <div className="container">
-            <button
-              id="button"
-              className="submit"
-              onClick={() => search()}
-            >
+            <button id="button" className="submit" onClick={() => readItems()}>
               Search
             </button>
           </div>
@@ -101,6 +110,7 @@ const Lost = () => {
             Choose a Category, Color and Location and hit Submit
           </h1>
         </div>
+        {/* <div className="items_Wrapper">{readItems()}</div>; */}
       </div>
     </div>
   );

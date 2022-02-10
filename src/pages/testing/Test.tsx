@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "./Test.scss";
 
 const Test = () => {
   const [count, setCount] = useState(0);
-  const [name, setName] = useState("time");
+  const [name, setName] = useState("times");
 
-  if (count > 1) {
-    nameChange();
-  }
+  useEffect(() => {
+    if (count === 1) {
+      nameChange();
+    } else {
+      setName("times");
+    }
+  }, [count]);
 
   function nameChange() {
-    setName("times");
+    setName("time");
   }
 
   return (

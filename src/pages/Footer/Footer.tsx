@@ -26,10 +26,8 @@ const Footer = () => {
               Fabian Türtscher
             </a>
             <a href="https://www.instagram.com/simon.ostini/">Simon Ostini</a>
-            <a href="https://www.instagram.com/patrick.cerny/">Patrick Cerny</a>
+            {/* <a href="https://www.instagram.com/patrick.cerny/">Patrick Cerny</a> */}
           </div>
-        </div>
-        <div className="footer__link--wrapper">
           <div className="footer__link--items">
             <h2>Social Media</h2>
             <a href="https://www.instagram.com/bellapoarch/">Instagram</a>

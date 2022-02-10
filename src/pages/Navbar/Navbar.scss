@@ -157,4 +157,13 @@ $veryLightGray: rgba(255, 255, 255, 0.5);
   #mobile-menu.is-active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
   }
+
+  .navbar img {
+    margin: 0;
+    margin-top: -1px;
+    margin-left: 0px;
+    height: 75px;
+    width: 330px;
+    cursor: pointer;
+  }
 }
