@@ -1,4 +1,11 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  DocumentData,
+  getDoc,
+  getDocs,
+  QueryDocumentSnapshot
+} from "firebase/firestore";
 import React, { useState } from "react";
 import { db } from "../../firebase";
 import { Category } from "../../types/category";
@@ -8,37 +15,31 @@ import "./Lost.scss";
 import Item from "../../components/item/item";
 
 const Lost = () => {
+  const [items, setItems] = useState<any[]>([]);
+
   const [category, setCategory] = useState<Category>(Category.Other);
   const [color, setColor] = useState<Color>(Color.Other);
   const [location, setLocation] = useState<Location>(Location.Other);
 
-  const search = async () => {
-    // window.location.href = "itemList";
-    const docRef = doc(db, "items", "");
-    const docSnap = await getDoc(docRef);
+  // const search = async () => {
+  //   const docRef = doc(db, "items", "");
+  //   const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-  };
-
-  const [items, setItems] = useState([
-    { title: "eins", description: "lost it yesterday" },
-  ]);
+  //   if (docSnap.exists()) {
+  //     console.log("Document data:", docSnap.data());
+  //   } else {
+  //     // doc.data() will be undefined in this case
+  //     console.log("No such document!");
+  //   }
+  // };
 
   const readItems = async () => {
-    const querySnapshot = await getDocs(collection(db, "items"));
-    let itemContainers: JSX.Element[] = [];
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-      items.push(doc.data().title, doc.data().description);
-      console.log(items);
-    });
+    const tempItems: DocumentData[] = [];
+    (await getDocs(collection(db, "items"))).forEach(doc =>
+      tempItems.push(doc.data())
+    );
 
-    return itemContainers;
+    setItems(tempItems);
   };
 
   return (
@@ -56,7 +57,9 @@ const Lost = () => {
               <div className="select_div">
                 <select
                   value={category}
-                  onChange={(e) => setCategory(e.target.value as Category)}
+                  onChange={e =>
+                    setCategory(e.target.value as Category)
+                  }
                 >
                   {Object.values(Category).map((category, i) => (
                     <option value={category} key={`${category}-${i}`}>
@@ -71,7 +74,7 @@ const Lost = () => {
               <div className="select_div">
                 <select
                   value={color}
-                  onChange={(e) => setColor(e.target.value as Color)}
+                  onChange={e => setColor(e.target.value as Color)}
                 >
                   {Object.values(Color).map((color, i) => (
                     <option value={color} key={`${color}-${i}`}>
@@ -86,7 +89,9 @@ const Lost = () => {
               <div className="select_div">
                 <select
                   value={location}
-                  onChange={(e) => setLocation(e.target.value as Location)}
+                  onChange={e =>
+                    setLocation(e.target.value as Location)
+                  }
                 >
                   {Object.values(Location).map((location, i) => (
                     <option value={location} key={`${location}-${i}`}>
@@ -98,7 +103,11 @@ const Lost = () => {
             </div>
           </div>
           <div className="container">
-            <button id="button" className="submit" onClick={() => readItems()}>
+            <button
+              id="button"
+              className="submit"
+              onClick={() => readItems()}
+            >
               Search
             </button>
           </div>
@@ -109,8 +118,20 @@ const Lost = () => {
             <br />
             Choose a Category, Color and Location and hit Submit
           </h1>
+          <div className="items_Wrapper">
+            {items.length > 0
+              ? items.map((item, i) => {
+                  return (
+                    <Item
+                      key={`${item}-${i}`}
+                      title={item.title}
+                      description={item.description}
+                    ></Item>
+                  );
+                })
+              : null}
+          </div>
         </div>
-        {/* <div className="items_Wrapper">{readItems()}</div>; */}
       </div>
     </div>
   );
