@@ -5,7 +5,6 @@ import Lost from "./pages/Lost/Lost";
 import Found from "./pages/Found/Found";
 import Navbar from "./pages/Navbar/Navbar";
 import Footer from "./pages/Footer/Footer";
-import Items from "./pages/ItemList/ItemList";
 import Preview from "./pages/Preview/Preview";
 import MainPage from "./pages/MainPage/MainPage";
 import ItemList from "./pages/ItemList/ItemList";
