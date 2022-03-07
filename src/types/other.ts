@@ -1,1 +1,1 @@
-export type Other = "Other";
+export type Any = "Any";
