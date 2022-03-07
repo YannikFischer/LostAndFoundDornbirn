@@ -7,5 +7,5 @@ export enum Color {
   "Green" = "Green",
   "Gray" = "Gray",
   "Brown" = "Brown",
-  "Other" = "Other"
+  "Any" = "Any"
 }

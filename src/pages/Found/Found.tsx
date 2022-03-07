@@ -59,9 +59,9 @@ const Found = () => {
 
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [category, setCategory] = useState<Category>(Category.Other);
-  const [color, setColor] = useState<any>(Color.Other);
-  const [location, setLocation] = useState<Location>(Location.Other);
+  const [category, setCategory] = useState<Category>(Category.Any);
+  const [color, setColor] = useState<any>(Color.Any);
+  const [location, setLocation] = useState<Location>(Location.Any);
   const [image, setImage] = useState<File | null>(null);
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");

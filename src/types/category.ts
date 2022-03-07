@@ -3,5 +3,5 @@ export enum Category {
   "Headphones" = "Headphones",
   "Other Electronics" = "Other Electronics",
   "Clothes" = "Clothes",
-  "Other" = "Other"
+  "Any" = "Any"
 }

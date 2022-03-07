@@ -17,9 +17,9 @@ import Item from "../../components/item/item";
 const Lost = () => {
   const [items, setItems] = useState<any[]>([]);
 
-  const [category, setCategory] = useState<Category>(Category.Other);
-  const [color, setColor] = useState<Color>(Color.Other);
-  const [location, setLocation] = useState<Location>(Location.Other);
+  const [category, setCategory] = useState<Category>(Category.Any);
+  const [color, setColor] = useState<Color>(Color.Any);
+  const [location, setLocation] = useState<Location>(Location.Any);
 
   // const search = async () => {
   //   const docRef = doc(db, "items", "");
