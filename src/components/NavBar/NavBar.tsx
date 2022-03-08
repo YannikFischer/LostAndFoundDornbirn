@@ -3,6 +3,7 @@ import AnimateHeight from 'react-animate-height';
 import { Link, useNavigate } from 'react-router-dom';
 import './NavBar.scss';
 import Logo from '../../images/LogoNavbar.png';
+interface NavBarProps {}
 
 const NavBar = () => {
   let navigate = useNavigate();
@@ -19,8 +20,8 @@ const NavBar = () => {
 
   useEffect(() => {
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) setMobile(false);
-      else if (window.innerWidth < 768) setMobile(true);
+      if (window.innerWidth > 820) setMobile(false);
+      else if (window.innerWidth < 820) setMobile(true);
     });
     window.addEventListener('scroll', () => {
       var winScroll =

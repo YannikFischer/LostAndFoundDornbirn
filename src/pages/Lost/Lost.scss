@@ -1,14 +1,14 @@
 $Blue: #3a89c2;
-@import '../../App.scss';
+@import "../../App.scss";
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .main_lost {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 900px;
+  height: 1100px;
   margin-top: 100px;
 
   &__selection_wrapper {
@@ -65,6 +65,10 @@ $Blue: #3a89c2;
     }
     &__submit {
       @include button;
+      transition: 300ms ease;
+      &:hover {
+        background-color: #237fc0;
+      }
     }
   }
 

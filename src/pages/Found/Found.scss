@@ -1,5 +1,5 @@
 $Blue: #3a89c2;
-@import '../../App.scss';
+@import "../../App.scss";
 
 @mixin input-wrapper {
   display: flex;
@@ -16,7 +16,7 @@ $Blue: #3a89c2;
   -moz-padding-start: calc(10px - 3px);
   padding: 0 0 0 10px;
   color: #313131;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: bold;
   border: none;
@@ -39,6 +39,10 @@ $Blue: #3a89c2;
   &__text {
     text-align: center;
     width: 100%;
+    * {
+      margin: 0;
+      margin-top: 30px;
+    }
   }
 
   &__selection_wrapper {
@@ -107,11 +111,15 @@ $Blue: #3a89c2;
         @include label;
       }
       &__input {
+        transition: 300ms ease;
         @include button;
         margin-top: 20px;
         text-align: center;
         width: 50%;
-        input[type='file'] {
+        &:hover {
+          background-color: #237fc0;
+        }
+        input[type="file"] {
           display: none;
         }
       }
@@ -120,15 +128,21 @@ $Blue: #3a89c2;
         align-items: center;
         flex-direction: column;
         img {
+          box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.5);
+          border-radius: 3px;
         }
         button {
           margin-top: 20px;
+          transition: 300ms ease;
           @include button;
+          &:hover {
+            background-color: #237fc0;
+          }
         }
       }
     }
-    h1 {
-    }
+    // h1 {
+    // }
     &__phone_wrapper {
       @include input-wrapper;
       &__label {
@@ -154,16 +168,33 @@ $Blue: #3a89c2;
       justify-content: center;
       button {
         width: 100%;
+        transition: 300ms ease;
         @include button;
+        &:hover {
+          background-color: #237fc0;
+        }
       }
     }
     &__feedback {
       text-align: center;
+      display: block;
+      width: 300px;
     }
   }
 }
 
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+}
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
