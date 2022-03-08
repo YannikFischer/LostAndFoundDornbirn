@@ -140,7 +140,7 @@ const Lost = () => {
           style={
             mobile
               ? {
-                  minHeight: '700px',
+                  minHeight: '300px',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }
