@@ -39,6 +39,10 @@ $Blue: #3a89c2;
   &__text {
     text-align: center;
     width: 100%;
+    * {
+      margin: 0;
+      margin-top: 30px;
+    }
   }
 
   &__selection_wrapper {
@@ -161,6 +165,8 @@ $Blue: #3a89c2;
     }
     &__feedback {
       text-align: center;
+      display: block;
+      width: 300px;
     }
   }
 }
