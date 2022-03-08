@@ -15,12 +15,30 @@ a:visited {
   color: #000;
   text-decoration: none;
 }
+@mixin label {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
 
+@mixin button {
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  background-color: $Blue;
+  color: white;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  margin-left: 0px;
+  padding: 10px 50px;
+}
 @mixin select {
   width: 100%;
   height: 60px;
   -moz-padding-start: calc(10px - 3px);
-  padding-left: 10px;
+  padding: 0 0 0 10px;
   color: #313131;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;

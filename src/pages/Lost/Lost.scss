@@ -24,8 +24,7 @@ $Blue: #3a89c2;
         width: 300px;
         padding: 0 10px;
         &__label {
-          font-size: 40px;
-          font-weight: bold;
+          @include label;
         }
         &__select {
           width: 100%;
@@ -39,8 +38,7 @@ $Blue: #3a89c2;
         width: 300px;
         padding: 0 10px;
         &__label {
-          font-size: 40px;
-          font-weight: bold;
+          @include label;
         }
         &__select {
           width: 100%;
@@ -54,8 +52,7 @@ $Blue: #3a89c2;
         width: 300px;
         padding: 0 10px;
         &__label {
-          font-size: 40px;
-          font-weight: bold;
+          @include label;
         }
         &__select {
           width: 100%;
@@ -66,6 +63,9 @@ $Blue: #3a89c2;
         }
       }
     }
+    &__submit {
+      @include button;
+    }
   }
 
   &__items {
@@ -73,6 +73,7 @@ $Blue: #3a89c2;
     overflow-y: scroll;
     display: flex;
     flex-direction: row;
+    height: 900px;
     justify-content: flex-start;
     flex-wrap: wrap;
     &::-webkit-scrollbar {

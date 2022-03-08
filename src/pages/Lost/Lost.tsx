@@ -5,7 +5,7 @@ import {
   query,
   where,
 } from 'firebase/firestore';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { db, storage } from '../../firebase';
 import { Category } from '../../types/category';
 import { Color } from '../../types/color';
@@ -15,8 +15,8 @@ import Item from '../../components/item/item';
 import { getDownloadURL, ref } from 'firebase/storage';
 
 const Lost = () => {
+  const [mobile, setMobile] = useState(window.innerWidth < 768);
   const [items, setItems] = useState<any[]>([]);
-
   const [category, setCategory] = useState<Category>(Category.Any);
   const [color, setColor] = useState<Color>(Color.Any);
   const [location, setLocation] = useState<Location>(Location.Any);
@@ -54,15 +54,27 @@ const Lost = () => {
     );
   };
 
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) setMobile(false);
+      else if (window.innerWidth < 768) setMobile(true);
+    });
+    return () => window.removeEventListener('resize', () => {});
+  });
   return (
-    <div>
-      <link
-        href='https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap'
-        rel='stylesheet'
-      />
-
-      <div className='main_lost'>
-        <div className='main_lost__selection_wrapper'>
+    <>
+      <div
+        className='main_lost'
+        style={
+          mobile
+            ? { flexDirection: 'column', height: 'auto' }
+            : { flexDirection: 'row' }
+        }
+      >
+        <div
+          className='main_lost__selection_wrapper'
+          style={mobile ? { minHeight: '700px' } : {}}
+        >
           <div className='main_lost__selection_wrapper__select_category'>
             <label className='main_lost__selection_wrapper__select_category__label'>
               Category
@@ -115,12 +127,26 @@ const Lost = () => {
             </div>
           </div>
 
-          <button id='button' className='submit' onClick={() => readItems()}>
+          <button
+            className='main_lost__selection_wrapper__submit'
+            onClick={() => readItems()}
+          >
             Search
           </button>
         </div>
 
-        <div className='main_lost__items'>
+        <div
+          className='main_lost__items'
+          style={
+            mobile
+              ? {
+                  minHeight: '700px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }
+              : {}
+          }
+        >
           {items.length < 1 ? (
             <h1>
               Search your Lost Item <br />
@@ -146,7 +172,7 @@ const Lost = () => {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

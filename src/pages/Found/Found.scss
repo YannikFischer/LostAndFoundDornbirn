@@ -1,209 +1,167 @@
 $Blue: #3a89c2;
+@import '../../App.scss';
+
+@mixin input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 0;
+  div,
+  input {
+    margin-top: 10px;
+  }
+}
+@mixin input {
+  width: 100%;
+  height: 60px;
+  -moz-padding-start: calc(10px - 3px);
+  padding: 0 0 0 10px;
+  color: #313131;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  margin-left: 0px;
+}
+
+.main_found {
+  margin-top: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  &__text {
+    text-align: center;
+    width: 100%;
+  }
+
+  &__selection_wrapper {
+    &__title_wrapper {
+      @include input-wrapper;
+      &__label {
+        @include label;
+      }
+      &__input {
+        @include input;
+      }
+    }
+    &__desc_wrapper {
+      @include input-wrapper;
+      &__label {
+        @include label;
+      }
+      &__input {
+        @include input;
+      }
+    }
+    &__category_wrapper {
+      @include input-wrapper;
+      &__label {
+        @include label;
+      }
+      &__select_wrapper {
+        width: 100%;
+        margin-top: 20px;
+        select {
+          @include select;
+        }
+      }
+    }
+    &__color_wrapper {
+      @include input-wrapper;
+      &__label {
+        @include label;
+      }
+      &__select_wrapper {
+        width: 100%;
+        margin-top: 20px;
+        select {
+          @include select;
+        }
+      }
+    }
+    &__location_wrapper {
+      @include input-wrapper;
+      &__label {
+        @include label;
+      }
+      &__select_wrapper {
+        width: 100%;
+        margin-top: 20px;
+        select {
+          @include select;
+        }
+      }
+    }
+    &__input_wrapper {
+      @include input-wrapper;
+      display: flex;
+      align-items: center;
+      &__label {
+        @include label;
+      }
+      &__input {
+        @include button;
+        margin-top: 20px;
+        text-align: center;
+        width: 50%;
+        input[type='file'] {
+          display: none;
+        }
+      }
+      &__image_wrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        img {
+        }
+        button {
+          margin-top: 20px;
+          @include button;
+        }
+      }
+    }
+    h1 {
+    }
+    &__phone_wrapper {
+      @include input-wrapper;
+      &__label {
+        @include label;
+      }
+      &__input {
+        @include input;
+      }
+    }
+
+    &__mail_wrapper {
+      @include input-wrapper;
+      &__label {
+        @include label;
+      }
+      &__input {
+        @include input;
+      }
+    }
+    &__submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      button {
+        width: 100%;
+        @include button;
+      }
+    }
+    &__feedback {
+      text-align: center;
+    }
+  }
+}
 
 * {
   font-family: 'Roboto', sans-serif;
-}
-
-$primaryColor: #999;
-$gray: #bbbbbb;
-
-@mixin label {
-  font-size: 40px;
-  font-weight: bold;
-}
-
-.preview img {
-  max-width: 336px;
-  max-height: 500px;
-  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
-  margin-top: 20px;
-}
-
-.select_uploadImage::file-selector-button {
-  outline: none;
-  height: 60px;
-  margin-top: 30px;
-  text-align: center;
-  width: 200px;
-  border-radius: 10px;
-  background: #fff;
-  border: 2px solid $Blue;
-  color: $Blue;
-  letter-spacing: 1px;
-  font-size: 20px;
-  text-shadow: 0;
-
-  cursor: pointer;
-  transition: all 0.25s ease;
-
-  &:hover {
-    color: white;
-    background: $Blue;
-  }
-}
-
-.contactInformationh1Div h1 {
-  width: 50%;
-}
-
-.found_wrapper {
-  display: flex;
-}
-
-.selection {
-  padding-top: 100px;
-  padding-bottom: auto;
-  width: 500px;
-}
-
-.selection h1 {
-  margin-left: 100px;
-  margin-top: 100px;
-  margin-bottom: 30px;
-}
-
-.select {
-  position: relative;
-  margin-left: 100px;
-  margin-bottom: 60px;
-}
-
-.select_div {
-  margin-top: 20px;
-}
-
-.select_phone::-webkit-inner-spin-button {
-  /* remove the arrows on the right of the number input field */
-  display: none;
-}
-.select_phone::-webkit-inner-spin-button {
-  /* remove the arrows on the right of the number input field */
-  display: none;
-}
-
-option {
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.text_container h1 {
-  font-size: 40px;
-  font-weight: 500;
-  color: #4d4d4d;
-  position: fixed;
-}
-
-.container {
-  margin-left: 100px;
-  margin-top: 80px;
-  margin-bottom: 80px;
-}
-
-.submit {
-  outline: none;
-  height: 60px;
-  text-align: center;
-  width: 200px;
-  border-radius: 10px;
-  background: #fff;
-  border: 2px solid $Blue;
-  color: $Blue;
-  letter-spacing: 2px;
-  font-size: 20px;
-  font-weight: bold;
-  text-shadow: 0;
-
-  cursor: pointer;
-  transition: all 0.25s ease;
-  &:hover {
-    color: white;
-    background: $Blue;
-  }
-  &:active {
-    letter-spacing: 2px;
-  }
-}
-
-.feedback {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-@media screen and (max-width: 960px) {
-  .select {
-    position: none;
-    margin: 10px;
-    margin-bottom: 60px;
-    width: 50%;
-  }
-
-  .label_title {
-    font-size: 30px;
-  }
-
-  .label_description {
-    font-size: 30px;
-  }
-
-  .label_category {
-    font-size: 30px;
-  }
-
-  .label_color {
-    font-size: 30px;
-  }
-
-  .label_location {
-    font-size: 30px;
-  }
-
-  .label_title {
-    font-size: 30px;
-  }
-
-  .label_uploadImage {
-    font-size: 30px;
-  }
-
-  .label_phone {
-    font-size: 30px;
-  }
-
-  .label_mail {
-    font-size: 30px;
-  }
-
-  .contactInformationh1Div {
-    position: none;
-    margin-left: -18%;
-    display: flex;
-  }
-
-  .select_phone::-webkit-inner-spin-button {
-    /* remove the arrows on the right of the number input field */
-    display: none;
-  }
-
-  .select_phone::-moz-inner-spin-button {
-    /* remove the arrows on the right of the number input field */
-    display: none;
-  }
-
-  .remove {
-    width: 25%;
-    height: 40px;
-    font-weight: bold;
-  }
-
-  .contactInformationh1Div h1 {
-    font-size: 30px;
-    display: flex;
-    border-bottom: 2px black solid;
-    font-weight: bold;
-  }
-
-  .submit {
-    margin-left: -26px;
-  }
 }
