@@ -1,5 +1,5 @@
 $Blue: #3a89c2;
-@import '../../App.scss';
+@import "../../App.scss";
 
 @mixin input-wrapper {
   display: flex;
@@ -16,7 +16,7 @@ $Blue: #3a89c2;
   -moz-padding-start: calc(10px - 3px);
   padding: 0 0 0 10px;
   color: #313131;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: bold;
   border: none;
@@ -111,7 +111,7 @@ $Blue: #3a89c2;
         margin-top: 20px;
         text-align: center;
         width: 50%;
-        input[type='file'] {
+        input[type="file"] {
           display: none;
         }
       }
@@ -120,6 +120,8 @@ $Blue: #3a89c2;
         align-items: center;
         flex-direction: column;
         img {
+          box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.5);
+          border-radius: 3px;
         }
         button {
           margin-top: 20px;
@@ -127,8 +129,8 @@ $Blue: #3a89c2;
         }
       }
     }
-    h1 {
-    }
+    // h1 {
+    // }
     &__phone_wrapper {
       @include input-wrapper;
       &__label {
@@ -164,6 +166,17 @@ $Blue: #3a89c2;
 }
 
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+}
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
