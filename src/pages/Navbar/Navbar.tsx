@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.scss";
 import Logo from "../../images/LogoNavbar.png";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const hamburger = true;
+  const [hamburger, setHamburger] = useState(false);
 
   return (
     <div>
@@ -17,6 +17,7 @@ const Navbar = () => {
         <div
           className={`navbar_toggle ${hamburger ? "is-active" : ""}`}
           id="mobile-menu"
+          onClick={() => setHamburger((prev) => !prev)}
         >
           <span className="bar"></span>
           <span className="bar"></span>
