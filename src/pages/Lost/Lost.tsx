@@ -114,26 +114,29 @@ const Lost = () => {
             </button>
           </div>
         </div>
-        <div className="text_container">
-          <h1>
-            Search your Lost Item <br />
-            <br />
-            Choose a Category, Color and Location and hit Submit
-          </h1>
-          <div className="items_Wrapper">
-            {items.length > 0
-              ? items.map((item, i) => {
-                  return (
-                    <Item
-                      key={`${item}-${i}`}
-                      title={item.title}
-                      description={item.description}
-                      image={item.imageUrl}
-                    ></Item>
-                  );
-                })
-              : null}
+
+        {items.length < 1 && (
+          <div className="text_container">
+            <h1>
+              Search your Lost Item <br />
+              <br />
+              Choose a Category, Color and Location and hit Submit
+            </h1>
           </div>
+        )}
+        <div className="items_Wrapper">
+          {items.length > 0
+            ? items.map((item, i) => {
+                return (
+                  <Item
+                    key={`${item}-${i}`}
+                    title={item.title}
+                    description={item.description}
+                    image={item.imageUrl}
+                  ></Item>
+                );
+              })
+            : null}
         </div>
       </div>
     </div>
