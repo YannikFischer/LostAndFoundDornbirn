@@ -5,13 +5,18 @@ import rat from "../../images/Anton.jpg";
 interface item {
   title: string;
   description: string;
+  image?: string;
 }
 
-const item = ({ title, description }: item) => {
+const item = ({ title, description, image }: item) => {
   return (
     <div className="item">
       <div className="item_img">
-        <img src={rat} alt="item_picture" className="img_responsive" />
+        <img
+          src={image ?? rat}
+          alt="item_picture"
+          className="img_responsive"
+        />
       </div>
       <h1>{title}</h1>
       <div className="description">
