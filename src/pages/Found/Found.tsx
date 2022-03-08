@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ref, uploadBytes } from 'firebase/storage';
 
 const Found = () => {
-  const defaultDebounce = 2000 as const;
+  const defaultDebounce = 4000 as const;
 
   const uploadItem = async () => {
     try {
@@ -41,6 +41,7 @@ const Found = () => {
         clearInputs();
         setTimeout(() => setFeedback(''), defaultDebounce);
       } else {
+
         setFeedback('Something went wrong, please check your input fields!');
         setTimeout(() => setFeedback(''), defaultDebounce);
       }
@@ -48,6 +49,7 @@ const Found = () => {
       console.log(error);
       setFeedback('Something went wrong, please check your input fields!');
       setTimeout(() => setFeedback(''), defaultDebounce);
+
     }
   };
 
@@ -237,6 +239,7 @@ const Found = () => {
           </div>
 
           <p className='main_found__selection_wrapper__feedback'>{feedback}</p>
+
         </div>
       </div>
     </>
