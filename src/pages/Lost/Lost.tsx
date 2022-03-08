@@ -3,6 +3,7 @@ import {
   DocumentData,
   getDocs,
   query,
+  QueryConstraint,
   where
 } from "firebase/firestore";
 import React, { useState } from "react";
@@ -22,17 +23,29 @@ const Lost = () => {
   const [location, setLocation] = useState<Location>(Location.Any);
 
   const readItems = async () => {
-    const tempItems: DocumentData[] = [];
+    let tempItems: DocumentData[] = [];
+
     (
       await getDocs(
         query(
           collection(db, "items"),
-          where("category", "==", category),
-          where("color", "==", color),
-          where("location", "==", location)
+          category !== Category.Any
+            ? where("category", "==", category)
+            : where("category", "!=", null)
         )
       )
     ).forEach(doc => tempItems.push(doc.data()));
+
+    tempItems =
+      color !== Color.Any
+        ? tempItems.filter(it => it.color === color)
+        : tempItems;
+    tempItems =
+      location !== Location.Any
+        ? tempItems.filter(it => it.location === location)
+        : tempItems;
+
+    console.log(tempItems);
 
     setItems(
       await Promise.all(
