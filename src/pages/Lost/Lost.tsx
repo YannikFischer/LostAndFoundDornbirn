@@ -4,16 +4,16 @@ import {
   getDocs,
   query,
   QueryConstraint,
-  where
-} from "firebase/firestore";
-import React, { useState } from "react";
-import { db, storage } from "../../firebase";
-import { Category } from "../../types/category";
-import { Color } from "../../types/color";
-import { Location } from "../../types/location";
-import "./Lost.scss";
-import Item from "../../components/item/item";
-import { getDownloadURL, ref } from "firebase/storage";
+  where,
+} from 'firebase/firestore';
+import React, { useState } from 'react';
+import { db, storage } from '../../firebase';
+import { Category } from '../../types/category';
+import { Color } from '../../types/color';
+import { Location } from '../../types/location';
+import './Lost.scss';
+import Item from '../../components/item/item';
+import { getDownloadURL, ref } from 'firebase/storage';
 
 const Lost = () => {
   const [items, setItems] = useState<any[]>([]);
@@ -28,28 +28,28 @@ const Lost = () => {
     (
       await getDocs(
         query(
-          collection(db, "items"),
+          collection(db, 'items'),
           category !== Category.Any
-            ? where("category", "==", category)
-            : where("category", "!=", null)
+            ? where('category', '==', category)
+            : where('category', '!=', null)
         )
       )
-    ).forEach(doc => tempItems.push(doc.data()));
+    ).forEach((doc) => tempItems.push(doc.data()));
 
     tempItems =
       color !== Color.Any
-        ? tempItems.filter(it => it.color === color)
+        ? tempItems.filter((it) => it.color === color)
         : tempItems;
     tempItems =
       location !== Location.Any
-        ? tempItems.filter(it => it.location === location)
+        ? tempItems.filter((it) => it.location === location)
         : tempItems;
 
     setItems(
       await Promise.all(
-        tempItems.map(async it => ({
+        tempItems.map(async (it) => ({
           ...it,
-          imageUrl: await getDownloadURL(ref(storage, it.image))
+          imageUrl: await getDownloadURL(ref(storage, it.image)),
         }))
       )
     );
@@ -58,96 +58,93 @@ const Lost = () => {
   return (
     <div>
       <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
-        rel="stylesheet"
+        href='https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap'
+        rel='stylesheet'
       />
 
-      <div className="lost_wrapper">
-        <div className="selection_wrapper">
-          <div className="selection">
-            <div className="select">
-              <label className="label_category">Category</label>
-              <div className="select_div">
-                <select
-                  value={category}
-                  onChange={e =>
-                    setCategory(e.target.value as Category)
-                  }
-                >
-                  {Object.values(Category).map((category, i) => (
-                    <option value={category} key={`${category}-${i}`}>
-                      {category}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="select">
-              <label className="label_color">Color</label>
-              <div className="select_div">
-                <select
-                  value={color}
-                  onChange={e => setColor(e.target.value as Color)}
-                >
-                  {Object.values(Color).map((color, i) => (
-                    <option value={color} key={`${color}-${i}`}>
-                      {color}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="select">
-              <label className="label_location">Location</label>
-              <div className="select_div">
-                <select
-                  value={location}
-                  onChange={e =>
-                    setLocation(e.target.value as Location)
-                  }
-                >
-                  {Object.values(Location).map((location, i) => (
-                    <option value={location} key={`${location}-${i}`}>
-                      {location}
-                    </option>
-                  ))}
-                </select>
-              </div>
+      <div className='main_lost'>
+        <div className='main_lost__selection_wrapper'>
+          <div className='main_lost__selection_wrapper__select_category'>
+            <label className='main_lost__selection_wrapper__select_category__label'>
+              Category
+            </label>
+            <div className='main_lost__selection_wrapper__select_category__select'>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value as Category)}
+              >
+                {Object.values(Category).map((category, i) => (
+                  <option value={category} key={`${category}-${i}`}>
+                    {category}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
-          <div className="container">
-            <button
-              id="button"
-              className="submit"
-              onClick={() => readItems()}
-            >
-              Search
-            </button>
+          <div className='main_lost__selection_wrapper__select_color'>
+            <label className='main_lost__selection_wrapper__select_color__label'>
+              Color
+            </label>
+            <div className='main_lost__selection_wrapper__select_color__select'>
+              <select
+                value={color}
+                onChange={(e) => setColor(e.target.value as Color)}
+              >
+                {Object.values(Color).map((color, i) => (
+                  <option value={color} key={`${color}-${i}`}>
+                    {color}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
+          <div className='main_lost__selection_wrapper__select_location'>
+            <label className='main_lost__selection_wrapper__select_location__label'>
+              Location
+            </label>
+            <div className='main_lost__selection_wrapper__select_location__select'>
+              <select
+                value={location}
+                onChange={(e) => setLocation(e.target.value as Location)}
+              >
+                {Object.values(Location).map((location, i) => (
+                  <option value={location} key={`${location}-${i}`}>
+                    {location}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <button id='button' className='submit' onClick={() => readItems()}>
+            Search
+          </button>
         </div>
 
-        {items.length < 1 && (
-          <div className="text_container">
+        <div className='main_lost__items'>
+          {items.length < 1 ? (
             <h1>
               Search your Lost Item <br />
               <br />
               Choose a Category, Color and Location and hit Submit
             </h1>
-          </div>
-        )}
-        <div className="items_Wrapper">
-          {items.length > 0
-            ? items.map((item, i) => {
-                return (
-                  <Item
-                    key={`${item}-${i}`}
-                    title={item.title}
-                    description={item.description}
-                    image={item.imageUrl}
-                  ></Item>
-                );
-              })
-            : null}
+          ) : (
+            <>
+              {items.length > 0
+                ? items.map((item, i) => {
+                    return (
+                      <Item
+                        key={`${item}-${i}`}
+                        title={item.title}
+                        description={item.description}
+                        image={item.imageUrl}
+                        color={item.color}
+                      ></Item>
+                    );
+                  })
+                : null}
+            </>
+          )}
         </div>
       </div>
     </div>

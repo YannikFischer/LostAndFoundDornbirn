@@ -1,7 +1,7 @@
 $Blue: #3a89c2;
 
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 $primaryColor: #999;
@@ -10,28 +10,6 @@ $gray: #bbbbbb;
 @mixin label {
   font-size: 40px;
   font-weight: bold;
-}
-
-@mixin select {
-  display: block;
-  width: 300px;
-  height: 50px;
-  margin-top: 20px;
-  padding: 3px 12px;
-  font-size: 20px;
-  line-height: 1.5;
-  color: #282828;
-  background-color: #f0eeee;
-  background-image: none;
-  border: 1px solid #b0afaf;
-  border-radius: 0;
-  font-weight: bold;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  -webkit-transition: border-color ease-in-out 0.15s,
-    -webkit-box-shadow ease-in-out 0.15s;
-  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
 .preview img {
@@ -91,54 +69,6 @@ $gray: #bbbbbb;
   margin-bottom: 60px;
 }
 
-.select_title {
-  @include select;
-}
-
-.select_description {
-  @include select;
-}
-
-.select_phone {
-  @include select;
-}
-
-.select_mail {
-  @include select;
-}
-
-.label_title {
-  @include label;
-}
-
-.label_category {
-  @include label;
-}
-
-.label_color {
-  @include label;
-}
-
-.label_location {
-  @include label;
-}
-
-.label_description {
-  @include label;
-}
-
-.label_uploadImage {
-  @include label;
-}
-
-.label_phone {
-  @include label;
-}
-
-.label_mail {
-  @include label;
-}
-
 .select_div {
   margin-top: 20px;
 }
@@ -152,36 +82,9 @@ $gray: #bbbbbb;
   display: none;
 }
 
-select {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  border: none;
-  width: 326px;
-  height: 60px;
-  -moz-padding-start: calc(10px - 3px);
-  padding-left: 10px;
-  color: #313131;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
-  outline: none;
-  cursor: pointer;
-  margin-left: 0px;
-}
-
 option {
   cursor: pointer;
   font-weight: bold;
-}
-
-.text_container {
-  padding-top: 100px;
-  padding-left: 30px;
-  width: 500px;
-  display: inline-block;
 }
 
 .text_container h1 {
@@ -269,10 +172,6 @@ option {
 
   .label_mail {
     font-size: 30px;
-  }
-
-  .text_container {
-    display: none;
   }
 
   .contactInformationh1Div {

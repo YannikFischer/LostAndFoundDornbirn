@@ -1,15 +1,5 @@
 $Blue: #3a89c2;
 
-.items_Wrapper {
-  margin-top: 100px;
-  height: auto;
-  z-index: 1;
-  padding-bottom: 100px;
-  font-family: "Roboto", sans-serif;
-  display: flex;
-  width: 100%;
-}
-
 .item_list {
   display: flex;
 }
@@ -82,6 +72,5 @@ h1 {
 }
 
 .item:hover .item_img img {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
-    0 15px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.25);
 }
