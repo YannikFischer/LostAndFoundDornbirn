@@ -45,8 +45,6 @@ const Lost = () => {
         ? tempItems.filter(it => it.location === location)
         : tempItems;
 
-    console.log(tempItems);
-
     setItems(
       await Promise.all(
         tempItems.map(async it => ({
