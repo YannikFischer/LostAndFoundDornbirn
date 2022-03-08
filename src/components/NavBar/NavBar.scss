@@ -31,7 +31,7 @@ $Blue: #3a89c2;
           color: white !important;
           transition: 300ms ease;
           &:hover {
-            color: black !important;
+            color: rgba(235, 235, 235, 0.75) !important;
           }
         }
       }
@@ -63,7 +63,7 @@ $Blue: #3a89c2;
         font-size: 1.5rem;
         &:hover {
           transition: 300ms ease;
-          color: #3a89c2 !important;
+          color: rgba(235, 235, 235, 0.75) !important;
         }
       }
       .menu {

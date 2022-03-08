@@ -65,6 +65,10 @@ $Blue: #3a89c2;
     }
     &__submit {
       @include button;
+      transition: 300ms ease;
+      &:hover {
+        background-color: #237fc0;
+      }
     }
   }
 

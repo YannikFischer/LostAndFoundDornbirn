@@ -4,15 +4,15 @@ import {
   getDocs,
   query,
   where,
-} from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
-import { db, storage } from '../../firebase';
-import { Category } from '../../types/category';
-import { Color } from '../../types/color';
-import { Location } from '../../types/location';
-import './Lost.scss';
-import Item from '../../components/item/item';
-import { getDownloadURL, ref } from 'firebase/storage';
+} from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { db, storage } from "../../firebase";
+import { Category } from "../../types/category";
+import { Color } from "../../types/color";
+import { Location } from "../../types/location";
+import "./Lost.scss";
+import Item from "../../components/item/item";
+import { getDownloadURL, ref } from "firebase/storage";
 
 const Lost = () => {
   const [mobile, setMobile] = useState(window.innerWidth < 768);
@@ -27,10 +27,10 @@ const Lost = () => {
     (
       await getDocs(
         query(
-          collection(db, 'items'),
+          collection(db, "items"),
           category !== Category.Any
-            ? where('category', '==', category)
-            : where('category', '!=', null)
+            ? where("category", "==", category)
+            : where("category", "!=", null)
         )
       )
     ).forEach((doc) => tempItems.push(doc.data()));
@@ -55,31 +55,31 @@ const Lost = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) setMobile(false);
-      else if (window.innerWidth < 768) setMobile(true);
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 820) setMobile(false);
+      else if (window.innerWidth < 820) setMobile(true);
     });
-    return () => window.removeEventListener('resize', () => {});
+    return () => window.removeEventListener("resize", () => {});
   });
   return (
     <>
       <div
-        className='main_lost'
+        className="main_lost"
         style={
           mobile
-            ? { flexDirection: 'column', height: 'auto' }
-            : { flexDirection: 'row' }
+            ? { flexDirection: "column", height: "auto" }
+            : { flexDirection: "row" }
         }
       >
         <div
-          className='main_lost__selection_wrapper'
-          style={mobile ? { minHeight: '700px' } : {}}
+          className="main_lost__selection_wrapper"
+          style={mobile ? { minHeight: "700px" } : {}}
         >
-          <div className='main_lost__selection_wrapper__select_category'>
-            <label className='main_lost__selection_wrapper__select_category__label'>
+          <div className="main_lost__selection_wrapper__select_category">
+            <label className="main_lost__selection_wrapper__select_category__label">
               Category
             </label>
-            <div className='main_lost__selection_wrapper__select_category__select'>
+            <div className="main_lost__selection_wrapper__select_category__select">
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value as Category)}
@@ -92,11 +92,11 @@ const Lost = () => {
               </select>
             </div>
           </div>
-          <div className='main_lost__selection_wrapper__select_color'>
-            <label className='main_lost__selection_wrapper__select_color__label'>
+          <div className="main_lost__selection_wrapper__select_color">
+            <label className="main_lost__selection_wrapper__select_color__label">
               Color
             </label>
-            <div className='main_lost__selection_wrapper__select_color__select'>
+            <div className="main_lost__selection_wrapper__select_color__select">
               <select
                 value={color}
                 onChange={(e) => setColor(e.target.value as Color)}
@@ -109,11 +109,11 @@ const Lost = () => {
               </select>
             </div>
           </div>
-          <div className='main_lost__selection_wrapper__select_location'>
-            <label className='main_lost__selection_wrapper__select_location__label'>
+          <div className="main_lost__selection_wrapper__select_location">
+            <label className="main_lost__selection_wrapper__select_location__label">
               Location
             </label>
-            <div className='main_lost__selection_wrapper__select_location__select'>
+            <div className="main_lost__selection_wrapper__select_location__select">
               <select
                 value={location}
                 onChange={(e) => setLocation(e.target.value as Location)}
@@ -128,7 +128,7 @@ const Lost = () => {
           </div>
 
           <button
-            className='main_lost__selection_wrapper__submit'
+            className="main_lost__selection_wrapper__submit"
             onClick={() => readItems()}
           >
             Search
@@ -136,13 +136,13 @@ const Lost = () => {
         </div>
 
         <div
-          className='main_lost__items'
+          className="main_lost__items"
           style={
             mobile
               ? {
-                  minHeight: '300px',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  minHeight: "300px",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }
               : {}
           }

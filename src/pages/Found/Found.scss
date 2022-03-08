@@ -111,10 +111,14 @@ $Blue: #3a89c2;
         @include label;
       }
       &__input {
+        transition: 300ms ease;
         @include button;
         margin-top: 20px;
         text-align: center;
         width: 50%;
+        &:hover {
+          background-color: #237fc0;
+        }
         input[type="file"] {
           display: none;
         }
@@ -129,7 +133,11 @@ $Blue: #3a89c2;
         }
         button {
           margin-top: 20px;
+          transition: 300ms ease;
           @include button;
+          &:hover {
+            background-color: #237fc0;
+          }
         }
       }
     }
@@ -160,7 +168,11 @@ $Blue: #3a89c2;
       justify-content: center;
       button {
         width: 100%;
+        transition: 300ms ease;
         @include button;
+        &:hover {
+          background-color: #237fc0;
+        }
       }
     }
     &__feedback {
