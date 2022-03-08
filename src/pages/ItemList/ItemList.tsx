@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import './ItemList.scss';
 import Item from '../../components/item/item';
 import { Color } from '../../types/color';
 
 const ItemList = () => {
-  const [items, setItems] = useState([
+  const items = [
     { title: 'eins', description: 'lost it yesterday' },
     { title: 'zwei', description: 'xxx it yesterday' },
     { title: 'drei', description: 'ayo' },
     { title: 'vier', description: 'xd' },
-  ]);
+  ];
 
   function getItemList() {
     let widgets: JSX.Element[] = [];

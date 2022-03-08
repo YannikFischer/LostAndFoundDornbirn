@@ -3,7 +3,6 @@ import {
   DocumentData,
   getDocs,
   query,
-  QueryConstraint,
   where,
 } from 'firebase/firestore';
 import React, { useState } from 'react';

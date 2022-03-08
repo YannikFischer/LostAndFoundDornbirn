@@ -1,18 +1,18 @@
 import './item.scss';
 import { Color } from '../../types/color';
 
-interface item {
+interface Item {
   title: string;
   description: string;
   image?: string;
   color: Color;
 }
 
-const item = ({ title, description, image, color }: item) => {
-  color == Color.Any && (color = Color.White);
+const item = ({ title, description, image, color }: Item) => {
+  color === Color.Any && (color = Color.White);
 
   let textColor =
-    color == Color.Black || color == Color.Blue || color == Color.Red
+    color === Color.Black || color === Color.Blue || color === Color.Red
       ? 'white'
       : 'black';
   return (
