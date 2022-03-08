@@ -194,7 +194,7 @@ option {
 .container {
   margin-left: 100px;
   margin-top: 80px;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 
 .submit {
@@ -223,6 +223,7 @@ option {
 }
 
 .feedback {
+  margin-left: 100px;
   font-size: 20px;
   font-weight: 600;
 }
@@ -306,5 +307,22 @@ option {
 
   .submit {
     margin-left: -26px;
+  }
+
+  .feedback {
+    margin-left: 10px;
+  }
+
+  .feedback p {
+    word-wrap: break-word;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .text_container h1 {
+    font-size: 30px;
+    font-weight: 500;
+    color: #4d4d4d;
+    position: fixed;
   }
 }
