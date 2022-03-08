@@ -22,7 +22,6 @@ function App() {
           <Route path='/itemList' element={<ItemList />} />
           <Route path='/preview' element={<Preview />} />
           <Route path='/test' element={<Test />} />
-          {/* <Route path="*" element={<Page404 />} /> */}
         </Routes>
       </BrowserRouter>
       <Footer />

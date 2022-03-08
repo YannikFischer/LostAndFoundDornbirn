@@ -3,9 +3,8 @@ import AnimateHeight from 'react-animate-height';
 import { Link, useNavigate } from 'react-router-dom';
 import './NavBar.scss';
 import Logo from '../../images/LogoNavbar.png';
-interface NavBarProps {}
 
-const NavBar = (props: NavBarProps) => {
+const NavBar = () => {
   let navigate = useNavigate();
   const [mobile, setMobile] = useState(window.innerWidth < 768);
   const [burgerClicked, setBurgerClicked] = useState(false);
