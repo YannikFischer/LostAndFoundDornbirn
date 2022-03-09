@@ -1,13 +1,11 @@
-import './ItemList.scss';
-import Item from '../../components/item/item';
-import { Color } from '../../types/color';
+import "./ItemList.scss";
+import Item from "../../components/item/item";
+import { Color } from "../../types/color";
 
 const ItemList = () => {
   const items = [
-    { title: 'eins', description: 'lost it yesterday' },
-    { title: 'zwei', description: 'xxx it yesterday' },
-    { title: 'drei', description: 'ayo' },
-    { title: 'vier', description: 'xd' },
+    { title: "eins", description: "lost it yesterday" },
+    { title: "zwei", description: "xxx it yesterday" },
   ];
 
   function getItemList() {
@@ -24,7 +22,7 @@ const ItemList = () => {
     return widgets;
   }
 
-  return <div className='items_Wrapper'>{getItemList()}</div>;
+  return <div className="items_Wrapper">{getItemList()}</div>;
 };
 
 export default ItemList;
