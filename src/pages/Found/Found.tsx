@@ -29,7 +29,7 @@ const Found = () => {
       };
 
       Object.entries(uploadItem).forEach(
-        async ([key, value]) => !value && (isValid = false)
+        async ([key, value]) => !value || (!image && (isValid = false))
       );
 
       if (isValid) {

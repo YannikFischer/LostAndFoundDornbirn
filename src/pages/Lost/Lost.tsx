@@ -15,7 +15,7 @@ import Item from "../../components/item/item";
 import { getDownloadURL, ref } from "firebase/storage";
 
 const Lost = () => {
-  const [mobile, setMobile] = useState(window.innerWidth < 768);
+  const [mobile, setMobile] = useState(window.innerWidth < 820);
   const [items, setItems] = useState<any[]>([]);
   const [category, setCategory] = useState<Category>(Category.Any);
   const [color, setColor] = useState<Color>(Color.Any);
