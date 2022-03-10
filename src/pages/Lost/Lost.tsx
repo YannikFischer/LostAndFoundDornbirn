@@ -3,7 +3,7 @@ import {
   DocumentData,
   getDocs,
   query,
-  where,
+  where
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db, storage } from "../../firebase";
@@ -33,22 +33,23 @@ const Lost = () => {
             : where("category", "!=", null)
         )
       )
-    ).forEach((doc) => tempItems.push(doc.data()));
+    ).forEach(doc => tempItems.push(doc.data()));
 
     tempItems =
       color !== Color.Any
-        ? tempItems.filter((it) => it.color === color)
+        ? tempItems.filter(it => it.color === color)
         : tempItems;
     tempItems =
       location !== Location.Any
-        ? tempItems.filter((it) => it.location === location)
+        ? tempItems.filter(it => it.location === location)
         : tempItems;
 
     setItems(
       await Promise.all(
-        tempItems.map(async (it) => ({
+        tempItems.map(async it => ({
           ...it,
-          imageUrl: await getDownloadURL(ref(storage, it.image)),
+          imageId: it.image,
+          imageUrl: await getDownloadURL(ref(storage, it.image))
         }))
       )
     );
@@ -61,6 +62,7 @@ const Lost = () => {
     });
     return () => window.removeEventListener("resize", () => {});
   });
+
   return (
     <>
       <div
@@ -82,7 +84,9 @@ const Lost = () => {
             <div className="main_lost__selection_wrapper__select_category__select">
               <select
                 value={category}
-                onChange={(e) => setCategory(e.target.value as Category)}
+                onChange={e =>
+                  setCategory(e.target.value as Category)
+                }
               >
                 {Object.values(Category).map((category, i) => (
                   <option value={category} key={`${category}-${i}`}>
@@ -99,7 +103,7 @@ const Lost = () => {
             <div className="main_lost__selection_wrapper__select_color__select">
               <select
                 value={color}
-                onChange={(e) => setColor(e.target.value as Color)}
+                onChange={e => setColor(e.target.value as Color)}
               >
                 {Object.values(Color).map((color, i) => (
                   <option value={color} key={`${color}-${i}`}>
@@ -116,7 +120,9 @@ const Lost = () => {
             <div className="main_lost__selection_wrapper__select_location__select">
               <select
                 value={location}
-                onChange={(e) => setLocation(e.target.value as Location)}
+                onChange={e =>
+                  setLocation(e.target.value as Location)
+                }
               >
                 {Object.values(Location).map((location, i) => (
                   <option value={location} key={`${location}-${i}`}>
@@ -142,7 +148,7 @@ const Lost = () => {
               ? {
                   minHeight: "300px",
                   alignItems: "center",
-                  justifyContent: "center",
+                  justifyContent: "center"
                 }
               : {}
           }
@@ -160,6 +166,7 @@ const Lost = () => {
                     return (
                       <Item
                         key={`${item}-${i}`}
+                        id={item.imageId}
                         title={item.title}
                         description={item.description}
                         image={item.imageUrl}

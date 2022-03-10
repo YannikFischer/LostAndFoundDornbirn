@@ -1,7 +1,48 @@
-import React from "react";
+import {
+  collection,
+  doc,
+  DocumentData,
+  getDoc,
+  getDocs,
+  query,
+  where
+} from "firebase/firestore";
+import { getDownloadURL, ref } from "firebase/storage";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { db, storage } from "../../firebase";
 import "./Preview.scss";
 
-const Preview = () => {
+const Preview: React.FC = () => {
+  const { id } = useParams();
+  const [item, setItem] = useState<any>([]);
+
+  useEffect(() => {
+    (async () => {
+      let tempItems: DocumentData[] = [];
+
+      (
+        await getDocs(
+          query(collection(db, "items"), where("image", "==", id))
+        )
+      ).forEach(doc => tempItems.push(doc.data()));
+
+      setItem(
+        (
+          await Promise.all(
+            tempItems.map(async it => ({
+              ...it,
+              imageId: it.image,
+              imageUrl: await getDownloadURL(
+                ref(storage, tempItems[0].image)
+              )
+            }))
+          )
+        )[0]
+      );
+    })();
+  }, []);
+
   return (
     <div>
       <link
@@ -12,19 +53,15 @@ const Preview = () => {
         <div className="img-title-box">
           <div className="imageBox">
             <img
-              src="../assets/Anton.jpg"
+              src={item.imageUrl}
               alt="item_picture"
               className="img_responsive"
             />
           </div>
           <div className="infoBox">
-            <h1>Item Title</h1>
+            <h1>{item.title}</h1>
             <div className="descriptionBox">
-              <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et accusam et
-              </p>
+              <p>{item.description}</p>
             </div>
           </div>
           <div className="contactInfoBox">

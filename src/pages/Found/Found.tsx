@@ -25,11 +25,12 @@ const Found = () => {
         location,
         phone,
         email,
-        image: imageID,
+        image: imageID
       };
 
       Object.entries(uploadItem).forEach(
-        async ([key, value]) => !value || (!image && (isValid = false))
+        async ([key, value]) =>
+          !value || (!image && (isValid = false))
       );
 
       if (isValid) {
@@ -41,12 +42,16 @@ const Found = () => {
         clearInputs();
         setTimeout(() => setFeedback(""), defaultDebounce);
       } else {
-        setFeedback("Something went wrong, please check your input fields!");
+        setFeedback(
+          "Something went wrong, please check your input fields!"
+        );
         setTimeout(() => setFeedback(""), defaultDebounce);
       }
     } catch (error) {
       console.log(error);
-      setFeedback("Something went wrong, please check your input fields!");
+      setFeedback(
+        "Something went wrong, please check your input fields!"
+      );
       setTimeout(() => setFeedback(""), defaultDebounce);
     }
   };
@@ -92,7 +97,8 @@ const Found = () => {
               placeholder="Item Title"
               type="text"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={e => setTitle(e.target.value)}
+              maxLength={30}
             />
           </div>
           <div className="main_found__selection_wrapper__desc_wrapper">
@@ -106,7 +112,8 @@ const Found = () => {
               placeholder="Item Description"
               type="text"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={e => setDescription(e.target.value)}
+              maxLength={250}
             />
           </div>
           <div className="main_found__selection_wrapper__category_wrapper">
@@ -116,7 +123,9 @@ const Found = () => {
             <div className="main_found__selection_wrapper__category_wrapper__select_wrapper">
               <select
                 value={category}
-                onChange={(e) => setCategory(e.target.value as Category)}
+                onChange={e =>
+                  setCategory(e.target.value as Category)
+                }
               >
                 {Object.values(Category).map((category, i) => (
                   <option value={category} key={`${category}-${i}`}>
@@ -133,7 +142,7 @@ const Found = () => {
             <div className="main_found__selection_wrapper__color_wrapper__select_wrapper">
               <select
                 value={color}
-                onChange={(e) => setColor(e.target.value as Color)}
+                onChange={e => setColor(e.target.value as Color)}
               >
                 {Object.values(Color).map((color, i) => (
                   <option value={color} key={`${color}-${i}`}>
@@ -150,7 +159,9 @@ const Found = () => {
             <div className="main_found__selection_wrapper__location_wrapper__select_wrapper">
               <select
                 value={location}
-                onChange={(e) => setLocation(e.target.value as Location)}
+                onChange={e =>
+                  setLocation(e.target.value as Location)
+                }
               >
                 {Object.values(Location).map((location, i) => (
                   <option value={location} key={`${location}-${i}`}>
@@ -172,7 +183,7 @@ const Found = () => {
                   id="uploadImage"
                   name="uploadImage"
                   accept="image/*"
-                  onChange={(e) => {
+                  onChange={e => {
                     e.target.files &&
                       e.target.files[0] &&
                       setImage(e.target.files[0]);
@@ -189,7 +200,10 @@ const Found = () => {
                     width={"250px"}
                     src={URL.createObjectURL(image)}
                   />
-                  <button className="remove" onClick={() => setImage(null)}>
+                  <button
+                    className="remove"
+                    onClick={() => setImage(null)}
+                  >
                     Remove
                   </button>
                 </>
@@ -210,7 +224,7 @@ const Found = () => {
               placeholder="Phone Number"
               type="number"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={e => setPhone(e.target.value)}
             />
           </div>
           <div className="main_found__selection_wrapper__mail_wrapper">
@@ -224,7 +238,8 @@ const Found = () => {
               placeholder="E-mail"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
+              maxLength={40}
             />
           </div>
           <div className="main_found__selection_wrapper__submit">
@@ -236,7 +251,9 @@ const Found = () => {
             </button>
           </div>
 
-          <p className="main_found__selection_wrapper__feedback">{feedback}</p>
+          <p className="main_found__selection_wrapper__feedback">
+            {feedback}
+          </p>
         </div>
       </div>
     </>
