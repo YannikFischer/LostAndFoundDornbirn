@@ -3,10 +3,25 @@ import Facebook from '../../images/facebook.png';
 import Instagram from '../../images/insta.png';
 import Youtube from '../../images/youtube.png';
 import './Footer.scss';
+import { useEffect, useState } from 'react';
 
 const Footer = () => {
+  const [mobile, setMobile] = useState(window.innerWidth < 820);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 820) setMobile(false);
+      else if (window.innerWidth < 820) setMobile(true);
+    });
+
+    return () => {};
+  }, []);
+
   return (
-    <div className='main_footer'>
+    <div
+      className='main_footer'
+      style={mobile ? { flexDirection: 'column' } : {}}
+    >
       <div className='main_footer__container'>
         <span className='main_footer__container__heading'>Legal Info</span>
         <a className='main_footer__container__item' href='/'>

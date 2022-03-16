@@ -31,11 +31,19 @@ $Blue: #3a89c2;
       flex-direction: row;
       justify-content: center;
       align-items: center;
+
+      &:first-child {
+        margin-left: 0;
+      }
       a {
         margin: 0 10px;
         display: block;
         width: 20px;
         height: 20px;
+        &:first-child {
+          margin-left: 0;
+        }
+
         img {
           width: 100%;
           height: 100%;
