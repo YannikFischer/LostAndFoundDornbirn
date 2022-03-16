@@ -55,7 +55,14 @@ const Preview: React.FC = () => {
       className='main_preview'
       style={mobile ? { flexDirection: 'column', margin: ' 100px 0' } : {}}
     >
-      <div className='main_preview__image-container'>
+      <div
+        className='main_preview__image-container'
+        style={
+          mobile
+            ? { borderBottom: '2px solid #999' }
+            : { borderRight: '2px solid #999' }
+        }
+      >
         <img
           className='main_preview__image'
           src={item.imageUrl}

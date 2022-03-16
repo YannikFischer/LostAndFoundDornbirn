@@ -1,5 +1,4 @@
 import './item.scss';
-import { Color } from '../../types/color';
 
 interface Item {
   id: string;
