@@ -14,9 +14,9 @@ const Test = () => {
     }
   }, [count]);
 
-  function nameChange() {
+  const nameChange = () => {
     setName("time");
-  }
+  };
 
   return (
     <div className="main">
