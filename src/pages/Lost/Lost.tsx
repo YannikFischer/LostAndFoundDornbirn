@@ -166,7 +166,7 @@ const Lost = () => {
                         title={item.title}
                         description={item.description}
                         image={item.imageUrl}
-                        color={item.color}
+                        delay={i * 100}
                       ></Item>
                     );
                   })

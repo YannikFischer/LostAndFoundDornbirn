@@ -6,12 +6,16 @@ interface Item {
   title: string;
   description: string;
   image?: string;
-  color: Color;
+  delay: number;
 }
 
-const item = ({ id, title, description, image, color }: Item) => {
+const item = ({ id, title, description, image, delay }: Item) => {
   return (
-    <a className='main_item' href={`/items/${id}`}>
+    <a
+      className='main_item'
+      href={`/items/${id}`}
+      style={{ animationDelay: delay + 'ms' }}
+    >
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'>
         <path
           fill='#3a89c2'
