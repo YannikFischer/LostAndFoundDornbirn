@@ -6,15 +6,15 @@ import {
   getDocs,
   query,
   where,
-} from 'firebase/firestore';
-import { getDownloadURL, ref } from 'firebase/storage';
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
-import { db, storage } from '../../firebase';
-import Email from '../../images/icon-email.png';
-import Phone from '../../images/icon-phone.png';
-import Arrow from '../../images/arrow.webp';
-import './Preview.scss';
+} from "firebase/firestore";
+import { getDownloadURL, ref } from "firebase/storage";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import { db, storage } from "../../firebase";
+import Email from "../../images/icon-email.png";
+import Phone from "../../images/icon-phone.png";
+import Arrow from "../../images/arrow.webp";
+import "./Preview.scss";
 
 const Preview: React.FC = () => {
   const { id } = useParams();
@@ -22,7 +22,7 @@ const Preview: React.FC = () => {
   const [mobile, setMobile] = useState(window.innerWidth < 820);
   const navigate = useNavigate();
   useEffect(() => {
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       if (window.innerWidth > 820) setMobile(false);
       else if (window.innerWidth < 820) setMobile(true);
     });
@@ -31,7 +31,7 @@ const Preview: React.FC = () => {
       let tempItems: DocumentData[] = [];
 
       (
-        await getDocs(query(collection(db, 'items'), where('image', '==', id)))
+        await getDocs(query(collection(db, "items"), where("image", "==", id)))
       ).forEach((doc) => tempItems.push(doc.data()));
 
       setItem(
@@ -47,46 +47,47 @@ const Preview: React.FC = () => {
       );
     })();
 
-    return window.removeEventListener('resize', () => {});
+    return window.removeEventListener("resize", () => {});
   }, [id]);
   console.log(item);
   return (
     <div
-      className='main_preview'
-      style={mobile ? { flexDirection: 'column', margin: ' 100px 0' } : {}}
+      className="main_preview"
+      style={mobile ? { flexDirection: "column", margin: " 100px 0" } : {}}
     >
       <div
-        className='main_preview__image-container'
+        className="main_preview__image-container"
         style={
           mobile
-            ? { borderBottom: '2px solid #999' }
-            : { borderRight: '2px solid #999' }
+            ? { borderBottom: "2px solid #999" }
+            : { borderRight: "2px solid #999" }
         }
       >
         <img
-          className='main_preview__image'
+          className="main_preview__image"
           src={item.imageUrl}
-          alt='item'
-          onClick={() => window.open(item.imageUrl, '_blank')}
+          alt="item"
+          onClick={() => window.open(item.imageUrl, "_blank")}
         />
       </div>
-      <div className='main_preview__text-container'>
-        <h2 className='main_preview__text-container__title'>{item.title}</h2>
-        <p className='main_preview__text-container__description'>
+      <div className="main_preview__text-container">
+        <h2 className="main_preview__text-container__title">{item.title}</h2>
+        <p className="main_preview__text-container__description">
           {item.description}
         </p>
         <span>Color: {item.color}</span>
         <span>Location: {item.location}</span>
-        <div className='main_preview__text-container__icons'>
-          <a href={'tel:' + item.phone}>
-            <img src={Phone} alt='Phone' />
+        <div className="main_preview__text-container__icons">
+          <a href={"tel:" + item.phone}>
+            <img src={Phone} alt="Phone" />
           </a>
-          <a href={'mailto:' + item.email}>
-            <img src={Email} alt='Email' />
+          <a href={"mailto:" + item.email}>
+            <img src={Email} alt="Email" />
           </a>
         </div>
+        <span>Phone number: {item.phone}</span>
       </div>
-      <img id='fab' src={Arrow} alt='' onClick={() => navigate(-1)} />
+      <img id="fab" src={Arrow} alt="" onClick={() => navigate(-1)} />
     </div>
   );
 };

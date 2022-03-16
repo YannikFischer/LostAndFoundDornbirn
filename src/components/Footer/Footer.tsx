@@ -20,9 +20,12 @@ const Footer = () => {
   return (
     <div
       className="main_footer"
-      style={mobile ? { flexDirection: "column" } : {}}
+      style={mobile ? { flexDirection: "column", alignItems: "center" } : {}}
     >
-      <div className="main_footer__container">
+      <div
+        className="main_footer__container"
+        style={mobile ? { flexDirection: "column", alignItems: "center" } : {}}
+      >
         <span className="main_footer__container__heading">Legal Info</span>
         <a className="main_footer__container__item" href="/">
           Terms & Conditions
@@ -31,7 +34,10 @@ const Footer = () => {
           Privacy Policy
         </a>
       </div>
-      <div className="main_footer__container">
+      <div
+        className="main_footer__container"
+        style={mobile ? { flexDirection: "column", alignItems: "center" } : {}}
+      >
         <span className="main_footer__container__heading">Team</span>
         <a className="main_footer__container__item" href="/">
           About Us
