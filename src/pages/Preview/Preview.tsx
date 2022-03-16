@@ -1,11 +1,9 @@
 import {
   collection,
-  doc,
   DocumentData,
-  getDoc,
   getDocs,
   query,
-  where,
+  where
 } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
 import React, { useEffect, useState } from "react";
@@ -31,16 +29,20 @@ const Preview: React.FC = () => {
       let tempItems: DocumentData[] = [];
 
       (
-        await getDocs(query(collection(db, "items"), where("image", "==", id)))
-      ).forEach((doc) => tempItems.push(doc.data()));
+        await getDocs(
+          query(collection(db, "items"), where("image", "==", id))
+        )
+      ).forEach(doc => tempItems.push(doc.data()));
 
       setItem(
         (
           await Promise.all(
-            tempItems.map(async (it) => ({
+            tempItems.map(async it => ({
               ...it,
               imageId: it.image,
-              imageUrl: await getDownloadURL(ref(storage, tempItems[0].image)),
+              imageUrl: await getDownloadURL(
+                ref(storage, tempItems[0].image)
+              )
             }))
           )
         )[0]
@@ -53,7 +55,9 @@ const Preview: React.FC = () => {
   return (
     <div
       className="main_preview"
-      style={mobile ? { flexDirection: "column", margin: " 100px 0" } : {}}
+      style={
+        mobile ? { flexDirection: "column", margin: " 100px 0" } : {}
+      }
     >
       <div
         className="main_preview__image-container"
@@ -71,7 +75,9 @@ const Preview: React.FC = () => {
         />
       </div>
       <div className="main_preview__text-container">
-        <h2 className="main_preview__text-container__title">{item.title}</h2>
+        <h2 className="main_preview__text-container__title">
+          {item.title}
+        </h2>
         <p className="main_preview__text-container__description">
           {item.description}
         </p>
