@@ -3,7 +3,7 @@ p {
 }
 
 #content {
-  margin-top: 100px;
+  height: 73.8%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -21,6 +21,11 @@ p {
   margin-right: auto;
   width: 100%;
   padding-bottom: 75px;
+  animation: fadeInAnimation ease 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+  opacity: 0;
 }
 
 #lost_block {
@@ -68,6 +73,10 @@ p {
 
 #logo_div {
   margin-top: 5%;
+  animation: fadeInAnimation ease 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  opacity: 0;
 }
 
 #logo_img {
@@ -129,6 +138,7 @@ p {
   #blocks {
     flex-wrap: wrap;
     padding: 0;
+    animation-delay: 0s;
   }
 
   #service_block {
@@ -162,5 +172,18 @@ p {
     width: 45%;
     max-width: 100px;
     min-width: 70px;
+  }
+  #content {
+    height: auto;
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

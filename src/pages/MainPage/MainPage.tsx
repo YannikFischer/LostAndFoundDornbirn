@@ -1,25 +1,25 @@
-import React from "react";
-import "./MainPage.scss";
-import logo from "../../images/LogoMainPage.png";
-import cloud from "../../images/Service.png";
-import userLeft from "../../images/User_Left.png";
-import userRight from "../../images/User_Right.png";
-import user from "../../images/User.jpg";
+import React from 'react';
+import './MainPage.scss';
+import logo from '../../images/LogoMainPage.png';
+import cloud from '../../images/Service.png';
+import userLeft from '../../images/User_Left.png';
+import userRight from '../../images/User_Right.png';
+import user from '../../images/User.jpg';
 
 const MainPage = () => {
   return (
-    <div id="content">
-      <div id="logo_div">
-        <img src={logo} alt="logo" id="logo_img" />
+    <div id='content'>
+      <div id='logo_div'>
+        <img src={logo} alt='logo' id='logo_img' />
       </div>
-      <div id="wrapper">
-        <div id="blocks">
-          <div id="lost_block">
-            <div id="image">
-              <img src={userLeft} alt="Lost_User_img" id="lost_img" />
-              <img src={user} alt="Lost_User_img" id="lost_img_mobile" />
+      <div id='wrapper'>
+        <div id='blocks'>
+          <div id='lost_block'>
+            <div id='image'>
+              <img src={userLeft} alt='Lost_User_img' id='lost_img' />
+              <img src={user} alt='Lost_User_img' id='lost_img_mobile' />
             </div>
-            <div id="text">
+            <div id='text'>
               <h1>Lost</h1>
               <p>
                 Fast search for lost items by filling in the description of the
@@ -28,11 +28,11 @@ const MainPage = () => {
             </div>
           </div>
 
-          <div id="service_block">
-            <div id="image">
-              <img src={cloud} alt="service_img" id="service_img" />
+          <div id='service_block'>
+            <div id='image'>
+              <img src={cloud} alt='service_img' id='service_img' />
             </div>
-            <div id="text">
+            <div id='text'>
               <h1>Service</h1>
               <p>
                 Our lost and found service shows the items in our database that
@@ -41,12 +41,12 @@ const MainPage = () => {
             </div>
           </div>
 
-          <div id="found_block">
-            <div id="image">
-              <img src={userRight} alt="Found_User_img" id="found_img" />
-              <img src={user} alt="Found_User_img" id="found_img_mobile" />
+          <div id='found_block'>
+            <div id='image'>
+              <img src={userRight} alt='Found_User_img' id='found_img' />
+              <img src={user} alt='Found_User_img' id='found_img_mobile' />
             </div>
-            <div id="text">
+            <div id='text'>
               <h1>Found</h1>
               <p>
                 Easy and fast submission for a found item by filling in the

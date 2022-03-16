@@ -1,0 +1,46 @@
+$Blue: #3a89c2;
+.main_footer {
+  display: flex;
+  width: 100%;
+  background-color: $Blue;
+  bottom: 0;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 2904932;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 20px 100px;
+    a,
+    span {
+      color: white;
+    }
+    &__heading {
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    &__item {
+    }
+
+    &__social-m {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      a {
+        margin: 0 10px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

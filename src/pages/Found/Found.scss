@@ -1,5 +1,5 @@
 $Blue: #3a89c2;
-@import "../../App.scss";
+@import '../../App.scss';
 
 @mixin input-wrapper {
   display: flex;
@@ -16,7 +16,7 @@ $Blue: #3a89c2;
   -moz-padding-start: calc(10px - 3px);
   padding: 0 0 0 10px;
   color: #313131;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 20px;
   font-weight: bold;
   border: none;
@@ -28,12 +28,10 @@ $Blue: #3a89c2;
 }
 
 .main_found {
-  margin-top: 100px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   text-align: center;
 
   &__text {
@@ -119,7 +117,7 @@ $Blue: #3a89c2;
         &:hover {
           background-color: #237fc0;
         }
-        input[type="file"] {
+        input[type='file'] {
           display: none;
         }
       }
@@ -184,7 +182,7 @@ $Blue: #3a89c2;
 }
 
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -195,6 +193,6 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
